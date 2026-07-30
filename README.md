@@ -16,9 +16,10 @@ Manually scraped data from the [loot page](https://rabbitandsteel.fandom.com/wik
 
 Manually evaluated each item pair and decided if they synergized, therefore creating an edge.
 
-Used pyvis to visualize the graph
+Used pyvis to visualize the graph.
 
 ## Viewing
 Download the [Rabbit and Steel Graph zip file](https://github.com/Joseph-Orawiec/Rabbit-and-Steel-Graph/blob/main/Rabbit%20and%20Steel%20Graph.zip), extract and open the HTML file. <br>
-Then when it loads, scroll down and set the solver to "forceAtlas2Based" and setting physics enabled to false will stop it from slowly spinning.<br>
+Then when it loads, scroll down and set the solver to "forceAtlas2Based" and setting physics enabled to false will stop it from slowly spinning.
+
 Also, hovering over items will then pull up their effect!
