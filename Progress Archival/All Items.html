@@ -1,0 +1,433 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        
+            <script src="lib/bindings/utils.js"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/dist/vis-network.min.css" integrity="sha512-WgxfT5LWjfszlPHXRmBWHkV2eceiWTOBvrKCNbdgDYTHrT2AeLCGbF4sZlZw3UMN3WtL0tGUoIAKsu8mllg/XA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/vis-network.min.js" integrity="sha512-LnvoEWDFrqGHlHmDD2101OrLcbsfkrzoSpvtSQtxK3RMnRV0eOkhhBN2dXHKRrUU8p2DGRTk35n4O8nWSVe1mQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            
+                <link href="lib/tom-select/tom-select.css" rel="stylesheet">
+                <script src="lib/tom-select/tom-select.complete.min.js"></script>
+            
+        
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+        <link
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+          crossorigin="anonymous"
+        />
+        <script
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+          crossorigin="anonymous"
+        ></script>
+
+
+        <center>
+          <h1></h1>
+        </center>
+        <style type="text/css">
+
+             #mynetwork {
+                 width: 100%;
+                 height: 600px;
+                 background-color: #ffffff;
+                 border: 1px solid lightgray;
+                 position: relative;
+                 float: left;
+             }
+
+             
+             #loadingBar {
+                 position:absolute;
+                 top:0px;
+                 left:0px;
+                 width: 100%;
+                 height: 600px;
+                 background-color:rgba(200,200,200,0.8);
+                 -webkit-transition: all 0.5s ease;
+                 -moz-transition: all 0.5s ease;
+                 -ms-transition: all 0.5s ease;
+                 -o-transition: all 0.5s ease;
+                 transition: all 0.5s ease;
+                 opacity:1;
+             }
+
+             #bar {
+                 position:absolute;
+                 top:0px;
+                 left:0px;
+                 width:20px;
+                 height:20px;
+                 margin:auto auto auto auto;
+                 border-radius:11px;
+                 border:2px solid rgba(30,30,30,0.05);
+                 background: rgb(0, 173, 246); /* Old browsers */
+                 box-shadow: 2px 0px 4px rgba(0,0,0,0.4);
+             }
+
+             #border {
+                 position:absolute;
+                 top:10px;
+                 left:10px;
+                 width:500px;
+                 height:23px;
+                 margin:auto auto auto auto;
+                 box-shadow: 0px 0px 4px rgba(0,0,0,0.2);
+                 border-radius:10px;
+             }
+
+             #text {
+                 position:absolute;
+                 top:8px;
+                 left:530px;
+                 width:30px;
+                 height:50px;
+                 margin:auto auto auto auto;
+                 font-size:22px;
+                 color: #000000;
+             }
+
+             div.outerBorder {
+                 position:relative;
+                 top:400px;
+                 width:600px;
+                 height:44px;
+                 margin:auto auto auto auto;
+                 border:8px solid rgba(0,0,0,0.1);
+                 background: rgb(252,252,252); /* Old browsers */
+                 background: -moz-linear-gradient(top,  rgba(252,252,252,1) 0%, rgba(237,237,237,1) 100%); /* FF3.6+ */
+                 background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(252,252,252,1)), color-stop(100%,rgba(237,237,237,1))); /* Chrome,Safari4+ */
+                 background: -webkit-linear-gradient(top,  rgba(252,252,252,1) 0%,rgba(237,237,237,1) 100%); /* Chrome10+,Safari5.1+ */
+                 background: -o-linear-gradient(top,  rgba(252,252,252,1) 0%,rgba(237,237,237,1) 100%); /* Opera 11.10+ */
+                 background: -ms-linear-gradient(top,  rgba(252,252,252,1) 0%,rgba(237,237,237,1) 100%); /* IE10+ */
+                 background: linear-gradient(to bottom,  rgba(252,252,252,1) 0%,rgba(237,237,237,1) 100%); /* W3C */
+                 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fcfcfc', endColorstr='#ededed',GradientType=0 ); /* IE6-9 */
+                 border-radius:72px;
+                 box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+             }
+             
+
+             
+             #config {
+                 float: left;
+                 width: 400px;
+                 height: 600px;
+             }
+             
+
+             
+        </style>
+    </head>
+
+
+    <body>
+        <div class="card" style="width: 100%">
+            
+            
+              <div id="filter-menu" class="card-header">
+                <div class="row no-gutters">
+                  <div class="col-3 pb-2">
+                    <select
+                            class="form-select"
+                            aria-label="Default select example"
+                            onchange="updateFilter(value, 'item')"
+                            id="select-item"
+                        >
+                        <option value="">Select a network item</option>
+                        <option value="edge">edge</option>
+                        <option value="node">node</option>
+                    </select>
+                  </div>
+                  <div class="col-3 pb-2">
+                    <select
+                            class="form-select"
+                            aria-label="Default select example"
+                            onchange="updateFilter(value, 'property')"
+                            id="select-property"
+                        >
+                        <option value="">Select a property...</option>
+                    </select>
+                  </div>
+                  <div class="col-3 pb-2">
+                    <select
+                            class="form-select"
+                            aria-label="Default select example"
+                            id="select-value"
+                        >
+                        <option value="">Select value(s)...</option>
+                    </select>
+                  </div>
+                  <div class="col-1 pb-2">
+                    <button type="button" class="btn btn-primary btn-block" onclick="highlightFilter(filter);">Filter</button>
+                  </div>
+                  <div class="col-2 pb-2">
+                    <button type="button" class="btn btn-primary btn-block" onclick="clearFilter(true)">Reset Selection</button>
+                  </div>
+                </div>
+              </div>
+            
+            <div id="mynetwork" class="card-body"></div>
+        </div>
+
+        
+            <div id="loadingBar">
+              <div class="outerBorder">
+                <div id="text">0%</div>
+                <div id="border">
+                  <div id="bar"></div>
+                </div>
+              </div>
+            </div>
+        
+        
+            <div id="config"></div>
+        
+
+        <script type="text/javascript">
+
+              // initialize global variables.
+              var edges;
+              var nodes;
+              var allNodes;
+              var allEdges;
+              var nodeColors;
+              var originalNodes;
+              var network;
+              var container;
+              var options, data;
+              var filter = {
+                  item : '',
+                  property : '',
+                  value : []
+              };
+
+              
+
+              
+                  // explicitly using onItemAdd and this function as we need to save multiple values
+                  let updateValueFilter = function() {
+                      return function () {
+                      filter['value'].push(arguments[0])
+                      }
+                  }
+
+                  let valueControl = new TomSelect("#select-value",{
+                      maxItems: null,
+                      valueField: 'id',
+                      labelField: 'title',
+                      searchField: 'title',
+                      create: false,
+                      sortField: {
+                          field: "text",
+                          direction: "asc"
+                      },
+                      onItemAdd: updateValueFilter()
+                  });
+
+                  let addValues = function() {
+                      return function () {
+                          // clear the current value options and add the selected attribute values
+                          // tom-select handles duplicates
+                          let selectedProperty = arguments[0];
+                          valueControl.clear();
+                          valueControl.clearOptions();
+                          filter['value'] = []
+                          if (filter['item'] === 'node') {
+                              for (let each in allNodes) {
+                                  valueControl.addOption({
+                                      id:allNodes[each][selectedProperty],
+                                      title:allNodes[each][selectedProperty]
+                                  })
+                              }
+                          }
+                          else if (filter['item'] === 'edge') {
+                              for (let each in allEdges) {
+                                  valueControl.addOption({
+                                      id:allEdges[each][selectedProperty],
+                                      title:allEdges[each][selectedProperty]
+                                  })
+                              }
+                          }
+                      }
+                  };
+
+                  let propControl = new TomSelect("#select-property",{
+                      valueField: 'id',
+                      labelField: 'title',
+                      searchField: 'title',
+                      create: false,
+                      sortField: {
+                          field: "text",
+                          direction: "asc"
+                      },
+                      onItemAdd: addValues()
+                  });
+
+                  let addProperties = function() {
+                      return function () {
+                          // loops through the selected network item and adds the attributes to dropdown
+                          // tom-select handles duplicates
+                          clearFilter(false)
+                          if (arguments[0] === 'edge') {
+                              for (let each in allEdges) {
+                                  if (allEdges.hasOwnProperty(each)) {
+                                      for (let eachProp in allEdges[each]) {
+                                          if (allEdges[each].hasOwnProperty(eachProp)) {
+                                              propControl.addOption({id: eachProp, title: eachProp})
+                                          }
+                                      }
+                                  }
+                              }
+                          }
+                          else if (arguments[0] === 'node') {
+                              for (let each in allNodes) {
+                                  if (allNodes.hasOwnProperty(each)) {
+                                      for (let eachProp in allNodes[each]) {
+                                          if (allNodes[each].hasOwnProperty(eachProp)
+                                              && (eachProp !== 'hidden' && eachProp !== 'savedLabel'
+                                                  && eachProp !== 'hiddenLabel')) {
+                                              propControl.addOption({id: eachProp, title: eachProp})
+
+                                          }
+                                      }
+                                  }
+                              }
+                          }
+                      }
+                  };
+
+                  let itemControl = new TomSelect("#select-item",{
+                      create: false,
+                      sortField:{
+                          field: "text",
+                          direction: "asc"
+                      },
+                      onItemAdd: addProperties()
+                  });
+
+                  function clearFilter(reset) {
+                      // utility function to clear all the selected filter options
+                      // if reset is set to true, the existing filter will be removed
+                      // else, only the dropdown options are cleared
+                      propControl.clear();
+                      propControl.clearOptions();
+                      valueControl.clear();
+                      valueControl.clearOptions();
+                      filter = {
+                          item : '',
+                          property : '',
+                          value : []
+                      }
+                      if (reset) {
+                          itemControl.clear();
+                          filterHighlight({nodes: []})
+                      }
+                  }
+
+                  function updateFilter(value, key) {
+                      // key could be 'item' or 'property' and value is as selected in dropdown
+                      filter[key] = value
+                  }
+
+              
+
+              // This method is responsible for drawing the graph, returns the drawn network
+              function drawGraph() {
+                  var container = document.getElementById('mynetwork');
+
+                  
+
+                  // parsing and collecting nodes and edges from the python
+                  nodes = new vis.DataSet([{"color": "#7536ff", "id": "Raven Grimoire", "label": "Raven Grimoire", "shape": "dot", "title": "Arcane"}, {"color": "#7536ff", "id": "Blackwing Staff", "label": "Blackwing Staff", "shape": "dot", "title": "Arcane"}, {"color": "#7536ff", "id": "Curse Talon", "label": "Curse Talon", "shape": "dot", "title": "Arcane"}, {"color": "#7536ff", "id": "Darkmagic Blade", "label": "Darkmagic Blade", "shape": "dot", "title": "Arcane"}, {"color": "#7536ff", "id": "Witch\u0027s Cloak", "label": "Witch\u0027s Cloak", "shape": "dot", "title": "Arcane"}, {"color": "#7536ff", "id": "Crowfeather Hairpin", "label": "Crowfeather Hairpin", "shape": "dot", "title": "Arcane"}, {"color": "#7536ff", "id": "Redblack Ribbon", "label": "Redblack Ribbon", "shape": "dot", "title": "Arcane"}, {"color": "#7536ff", "id": "Opal Necklace", "label": "Opal Necklace", "shape": "dot", "title": "Arcane"}, {"color": "#938cff", "id": "Sleeping Greatbow", "label": "Sleeping Greatbow", "shape": "dot", "title": "Night"}, {"color": "#938cff", "id": "Crescentmoon Dagger", "label": "Crescentmoon Dagger", "shape": "dot", "title": "Night"}, {"color": "#938cff", "id": "Lullaby Harp", "label": "Lullaby Harp", "shape": "dot", "title": "Night"}, {"color": "#938cff", "id": "Nightstar Grimoire", "label": "Nightstar Grimoire", "shape": "dot", "title": "Night"}, {"color": "#938cff", "id": "Moon Pendant", "label": "Moon Pendant", "shape": "dot", "title": "Night"}, {"color": "#938cff", "id": "Pajama Hat", "label": "Pajama Hat", "shape": "dot", "title": "Night"}, {"color": "#938cff", "id": "Stuffed Rabbit", "label": "Stuffed Rabbit", "shape": "dot", "title": "Night"}, {"color": "#938cff", "id": "Nightingale Gown", "label": "Nightingale Gown", "shape": "dot", "title": "Night"}, {"color": "#646aff", "id": "Eternity Flute", "label": "Eternity Flute", "shape": "dot", "title": "Timespace"}, {"color": "#646aff", "id": "Timewarp Wand", "label": "Timewarp Wand", "shape": "dot", "title": "Timespace"}, {"color": "#646aff", "id": "Chrome Shield", "label": "Chrome Shield", "shape": "dot", "title": "Timespace"}, {"color": "#646aff", "id": "Clockwork Tome", "label": "Clockwork Tome", "shape": "dot", "title": "Timespace"}, {"color": "#646aff", "id": "Metronome Boots", "label": "Metronome Boots", "shape": "dot", "title": "Timespace"}, {"color": "#646aff", "id": "Timemage Cap", "label": "Timemage Cap", "shape": "dot", "title": "Timespace"}, {"color": "#646aff", "id": "Starry Cloak", "label": "Starry Cloak", "shape": "dot", "title": "Timespace"}, {"color": "#646aff", "id": "Gemini Necklace", "label": "Gemini Necklace", "shape": "dot", "title": "Timespace"}, {"color": "#abfffc", "id": "Hawkfeather Fan", "label": "Hawkfeather Fan", "shape": "dot", "title": "Wind"}, {"color": "#abfffc", "id": "Windbite Dagger", "label": "Windbite Dagger", "shape": "dot", "title": "Wind"}, {"color": "#abfffc", "id": "Pidgeon Bow", "label": "Pidgeon Bow", "shape": "dot", "title": "Wind"}, {"color": "#abfffc", "id": "Shinsoku Katana", "label": "Shinsoku Katana", "shape": "dot", "title": "Wind"}, {"color": "#abfffc", "id": "Eaglewing Charm", "label": "Eaglewing Charm", "shape": "dot", "title": "Wind"}, {"color": "#abfffc", "id": "Sparrow Feather", "label": "Sparrow Feather", "shape": "dot", "title": "Wind"}, {"color": "#abfffc", "id": "Winged Cap", "label": "Winged Cap", "shape": "dot", "title": "Wind"}, {"color": "#abfffc", "id": "Thief\u0027s Coat", "label": "Thief\u0027s Coat", "shape": "dot", "title": "Wind"}, {"color": "#388af6", "id": "Vampiric Dagger", "label": "Vampiric Dagger", "shape": "dot", "title": "Bloodwolf"}, {"color": "#388af6", "id": "Bloody Bandage", "label": "Bloody Bandage", "shape": "dot", "title": "Bloodwolf"}, {"color": "#388af6", "id": "Leech Staff", "label": "Leech Staff", "shape": "dot", "title": "Bloodwolf"}, {"color": "#388af6", "id": "Bloodhound Greatsword", "label": "Bloodhound Greatsword", "shape": "dot", "title": "Bloodwolf"}, {"color": "#388af6", "id": "Reaper Cloak", "label": "Reaper Cloak", "shape": "dot", "title": "Bloodwolf"}, {"color": "#388af6", "id": "Bloodflower Brooch", "label": "Bloodflower Brooch", "shape": "dot", "title": "Bloodwolf"}, {"color": "#388af6", "id": "Wolf Hood", "label": "Wolf Hood", "shape": "dot", "title": "Bloodwolf"}, {"color": "#388af6", "id": "Blood Vial", "label": "Blood Vial", "shape": "dot", "title": "Bloodwolf"}, {"color": "#3360ff", "id": "Black Wakizashi", "label": "Black Wakizashi", "shape": "dot", "title": "Assassin"}, {"color": "#3360ff", "id": "Throwing Dagger", "label": "Throwing Dagger", "shape": "dot", "title": "Assassin"}, {"color": "#3360ff", "id": "Assassin\u0027s Knife", "label": "Assassin\u0027s Knife", "shape": "dot", "title": "Assassin"}, {"color": "#3360ff", "id": "Ninjutsu Scroll", "label": "Ninjutsu Scroll", "shape": "dot", "title": "Assassin"}, {"color": "#3360ff", "id": "Shadow Bracelet", "label": "Shadow Bracelet", "shape": "dot", "title": "Assassin"}, {"color": "#3360ff", "id": "Ninja Robe", "label": "Ninja Robe", "shape": "dot", "title": "Assassin"}, {"color": "#3360ff", "id": "Kunoichi Hood", "label": "Kunoichi Hood", "shape": "dot", "title": "Assassin"}, {"color": "#3360ff", "id": "Shinobi Tabi", "label": "Shinobi Tabi", "shape": "dot", "title": "Assassin"}, {"color": "#ef405c", "id": "Dragonhead Spear", "label": "Dragonhead Spear", "shape": "dot", "title": "Rockdragon"}, {"color": "#ef405c", "id": "Granite Greatsword", "label": "Granite Greatsword", "shape": "dot", "title": "Rockdragon"}, {"color": "#ef405c", "id": "Greysteel Shield", "label": "Greysteel Shield", "shape": "dot", "title": "Rockdragon"}, {"color": "#ef405c", "id": "Stonebreaker Staff", "label": "Stonebreaker Staff", "shape": "dot", "title": "Rockdragon"}, {"color": "#ef405c", "id": "Tough Gauntlet", "label": "Tough Gauntlet", "shape": "dot", "title": "Rockdragon"}, {"color": "#ef405c", "id": "Rockdragon Mail", "label": "Rockdragon Mail", "shape": "dot", "title": "Rockdragon"}, {"color": "#ef405c", "id": "Obsidian Hairpin", "label": "Obsidian Hairpin", "shape": "dot", "title": "Rockdragon"}, {"color": "#ef405c", "id": "Iron Greaves", "label": "Iron Greaves", "shape": "dot", "title": "Rockdragon"}, {"color": "#ff3333", "id": "Volcano Spear", "label": "Volcano Spear", "shape": "dot", "title": "Flame"}, {"color": "#ff3333", "id": "Reddragon Blade", "label": "Reddragon Blade", "shape": "dot", "title": "Flame"}, {"color": "#ff3333", "id": "Flame Bow", "label": "Flame Bow", "shape": "dot", "title": "Flame"}, {"color": "#ff3333", "id": "Meteor Staff", "label": "Meteor Staff", "shape": "dot", "title": "Flame"}, {"color": "#ff3333", "id": "Phoenix Charm", "label": "Phoenix Charm", "shape": "dot", "title": "Flame"}, {"color": "#ff3333", "id": "Firescale Corset", "label": "Firescale Corset", "shape": "dot", "title": "Flame"}, {"color": "#ff3333", "id": "Demon Horns", "label": "Demon Horns", "shape": "dot", "title": "Flame"}, {"color": "#ff3333", "id": "Flamewalker Boots", "label": "Flamewalker Boots", "shape": "dot", "title": "Flame"}, {"color": "#ff89be", "id": "Diamond Shield", "label": "Diamond Shield", "shape": "dot", "title": "Gem"}, {"color": "#ff89be", "id": "Peridot Rapier", "label": "Peridot Rapier", "shape": "dot", "title": "Gem"}, {"color": "#ff89be", "id": "Garnet Staff", "label": "Garnet Staff", "shape": "dot", "title": "Gem"}, {"color": "#ff89be", "id": "Sapphire Violin", "label": "Sapphire Violin", "shape": "dot", "title": "Gem"}, {"color": "#ff89be", "id": "Emerald Chestplate", "label": "Emerald Chestplate", "shape": "dot", "title": "Gem"}, {"color": "#ff89be", "id": "Amethyst Bracelet", "label": "Amethyst Bracelet", "shape": "dot", "title": "Gem"}, {"color": "#ff89be", "id": "Topaz Charm", "label": "Topaz Charm", "shape": "dot", "title": "Gem"}, {"color": "#ff89be", "id": "Ruby Circlet", "label": "Ruby Circlet", "shape": "dot", "title": "Gem"}, {"color": "#ffe496", "id": "Brightstorm Spear", "label": "Brightstorm Spear", "shape": "dot", "title": "Lightning"}, {"color": "#ffe496", "id": "Bolt Staff", "label": "Bolt Staff", "shape": "dot", "title": "Lightning"}, {"color": "#ffe496", "id": "Lightning Bow", "label": "Lightning Bow", "shape": "dot", "title": "Lightning"}, {"color": "#ffe496", "id": "Darkstorm Knife", "label": "Darkstorm Knife", "shape": "dot", "title": "Lightning"}, {"color": "#ffe496", "id": "Darkcloud Necklace", "label": "Darkcloud Necklace", "shape": "dot", "title": "Lightning"}, {"color": "#ffe496", "id": "Crown of Storms", "label": "Crown of Storms", "shape": "dot", "title": "Lightning"}, {"color": "#ffe496", "id": "Thunderclap Gloves", "label": "Thunderclap Gloves", "shape": "dot", "title": "Lightning"}, {"color": "#ffe496", "id": "Storm Petticoat", "label": "Storm Petticoat", "shape": "dot", "title": "Lightning"}, {"color": "#ffad60", "id": "Holy Greatsword", "label": "Holy Greatsword", "shape": "dot", "title": "Shrine"}, {"color": "#ffad60", "id": "Sacred Bow", "label": "Sacred Bow", "shape": "dot", "title": "Shrine"}, {"color": "#ffad60", "id": "Purification Rod", "label": "Purification Rod", "shape": "dot", "title": "Shrine"}, {"color": "#ffad60", "id": "Ornamental Bell", "label": "Ornamental Bell", "shape": "dot", "title": "Shrine"}, {"color": "#ffad60", "id": "Shrinemaiden\u0027s Kosode", "label": "Shrinemaiden\u0027s Kosode", "shape": "dot", "title": "Shrine"}, {"color": "#ffad60", "id": "Redwhite Ribbon", "label": "Redwhite Ribbon", "shape": "dot", "title": "Shrine"}, {"color": "#ffad60", "id": "Divine Mirror", "label": "Divine Mirror", "shape": "dot", "title": "Shrine"}, {"color": "#ffad60", "id": "Golden Chime", "label": "Golden Chime", "shape": "dot", "title": "Shrine"}, {"color": "#fff6bf", "id": "Book of Cheats", "label": "Book of Cheats", "shape": "dot", "title": "Lucky"}, {"color": "#fff6bf", "id": "Golden Katana", "label": "Golden Katana", "shape": "dot", "title": "Lucky"}, {"color": "#fff6bf", "id": "Glittering Trumpet", "label": "Glittering Trumpet", "shape": "dot", "title": "Lucky"}, {"color": "#fff6bf", "id": "Royal Staff", "label": "Royal Staff", "shape": "dot", "title": "Lucky"}, {"color": "#fff6bf", "id": "Ballroom Gown", "label": "Ballroom Gown", "shape": "dot", "title": "Lucky"}, {"color": "#fff6bf", "id": "Silver Coin", "label": "Silver Coin", "shape": "dot", "title": "Lucky"}, {"color": "#fff6bf", "id": "Queen\u0027s Crown", "label": "Queen\u0027s Crown", "shape": "dot", "title": "Lucky"}, {"color": "#fff6bf", "id": "Mimick Rabbitfoot", "label": "Mimick Rabbitfoot", "shape": "dot", "title": "Lucky"}, {"color": "#c1ff8d", "id": "Butterfly Ocarina", "label": "Butterfly Ocarina", "shape": "dot", "title": "Life"}, {"color": "#c1ff8d", "id": "Fairy Spear", "label": "Fairy Spear", "shape": "dot", "title": "Life"}, {"color": "#c1ff8d", "id": "Moss Shield", "label": "Moss Shield", "shape": "dot", "title": "Life"}, {"color": "#c1ff8d", "id": "Floral Bow", "label": "Floral Bow", "shape": "dot", "title": "Life"}, {"color": "#c1ff8d", "id": "Blue Rose", "label": "Blue Rose", "shape": "dot", "title": "Life"}, {"color": "#c1ff8d", "id": "Sunflower Crown", "label": "Sunflower Crown", "shape": "dot", "title": "Life"}, {"color": "#c1ff8d", "id": "Midsummer Dress", "label": "Midsummer Dress", "shape": "dot", "title": "Life"}, {"color": "#c1ff8d", "id": "Grasswoven Bracelet", "label": "Grasswoven Bracelet", "shape": "dot", "title": "Life"}, {"color": "#4dfb84", "id": "Snakefang Dagger", "label": "Snakefang Dagger", "shape": "dot", "title": "Poison"}, {"color": "#4dfb84", "id": "Ivy Staff", "label": "Ivy Staff", "shape": "dot", "title": "Poison"}, {"color": "#4dfb84", "id": "Deathcap Tome", "label": "Deathcap Tome", "shape": "dot", "title": "Poison"}, {"color": "#4dfb84", "id": "Spiderbite Bow", "label": "Spiderbite Bow", "shape": "dot", "title": "Poison"}, {"color": "#4dfb84", "id": "Compound Gloves", "label": "Compound Gloves", "shape": "dot", "title": "Poison"}, {"color": "#4dfb84", "id": "Poisonfrog Charm", "label": "Poisonfrog Charm", "shape": "dot", "title": "Poison"}, {"color": "#4dfb84", "id": "Venom Hood", "label": "Venom Hood", "shape": "dot", "title": "Poison"}, {"color": "#4dfb84", "id": "Chemist\u0027s Coat", "label": "Chemist\u0027s Coat", "shape": "dot", "title": "Poison"}, {"color": "#43fab7", "id": "Seashell Shield", "label": "Seashell Shield", "shape": "dot", "title": "Depth"}, {"color": "#43fab7", "id": "Necronomicon", "label": "Necronomicon", "shape": "dot", "title": "Depth"}, {"color": "#43fab7", "id": "Tidal Greatsword", "label": "Tidal Greatsword", "shape": "dot", "title": "Depth"}, {"color": "#43fab7", "id": "Occult Dagger", "label": "Occult Dagger", "shape": "dot", "title": "Depth"}, {"color": "#43fab7", "id": "Mermaid Scalemail", "label": "Mermaid Scalemail", "shape": "dot", "title": "Depth"}, {"color": "#43fab7", "id": "Hydrous Blob", "label": "Hydrous Blob", "shape": "dot", "title": "Depth"}, {"color": "#43fab7", "id": "Abyss Artifact", "label": "Abyss Artifact", "shape": "dot", "title": "Depth"}, {"color": "#43fab7", "id": "Lost Pendant", "label": "Lost Pendant", "shape": "dot", "title": "Depth"}, {"color": "#492f85", "id": "Sawtooth Cleaver", "label": "Sawtooth Cleaver", "shape": "dot", "title": "Darkbite"}, {"color": "#492f85", "id": "Raven\u0027s Dagger", "label": "Raven\u0027s Dagger", "shape": "dot", "title": "Darkbite"}, {"color": "#492f85", "id": "Killing Note", "label": "Killing Note", "shape": "dot", "title": "Darkbite"}, {"color": "#492f85", "id": "Blacksteel Buckler", "label": "Blacksteel Buckler", "shape": "dot", "title": "Darkbite"}, {"color": "#492f85", "id": "Nightguard Gloves", "label": "Nightguard Gloves", "shape": "dot", "title": "Darkbite"}, {"color": "#492f85", "id": "Sniper\u0027s Eyeglasses", "label": "Sniper\u0027s Eyeglasses", "shape": "dot", "title": "Darkbite"}, {"color": "#492f85", "id": "Darkmage Charm", "label": "Darkmage Charm", "shape": "dot", "title": "Darkbite"}, {"color": "#492f85", "id": "Firststrike Bracelet", "label": "Firststrike Bracelet", "shape": "dot", "title": "Darkbite"}, {"color": "#573fff", "id": "Obsidian Rod", "label": "Obsidian Rod", "shape": "dot", "title": "Timegem"}, {"color": "#573fff", "id": "Darkglass Spear", "label": "Darkglass Spear", "shape": "dot", "title": "Timegem"}, {"color": "#573fff", "id": "Timespace Dagger", "label": "Timespace Dagger", "shape": "dot", "title": "Timegem"}, {"color": "#573fff", "id": "Quartz Shield", "label": "Quartz Shield", "shape": "dot", "title": "Timegem"}, {"color": "#573fff", "id": "Pocketwatch", "label": "Pocketwatch", "shape": "dot", "title": "Timegem"}, {"color": "#573fff", "id": "Nova Crown", "label": "Nova Crown", "shape": "dot", "title": "Timegem"}, {"color": "#573fff", "id": "Blackhole Charm", "label": "Blackhole Charm", "shape": "dot", "title": "Timegem"}, {"color": "#573fff", "id": "Twinstar Earrings", "label": "Twinstar Earrings", "shape": "dot", "title": "Timegem"}, {"color": "#464544", "id": "Kyou No Omikuji", "label": "Kyou No Omikuji", "shape": "dot", "title": "Youkai"}, {"color": "#464544", "id": "Youkai Bracelet", "label": "Youkai Bracelet", "shape": "dot", "title": "Youkai"}, {"color": "#464544", "id": "Oni Staff", "label": "Oni Staff", "shape": "dot", "title": "Youkai"}, {"color": "#464544", "id": "Kappa Shield", "label": "Kappa Shield", "shape": "dot", "title": "Youkai"}, {"color": "#464544", "id": "Usagi Kamen", "label": "Usagi Kamen", "shape": "dot", "title": "Youkai"}, {"color": "#464544", "id": "Red Tanzaku", "label": "Red Tanzaku", "shape": "dot", "title": "Youkai"}, {"color": "#464544", "id": "Vega Spear", "label": "Vega Spear", "shape": "dot", "title": "Youkai"}, {"color": "#464544", "id": "Altair Dagger", "label": "Altair Dagger", "shape": "dot", "title": "Youkai"}, {"color": "#89f9dc", "id": "Ghost Spear", "label": "Ghost Spear", "shape": "dot", "title": "Haunted"}, {"color": "#89f9dc", "id": "Phantom Dagger", "label": "Phantom Dagger", "shape": "dot", "title": "Haunted"}, {"color": "#89f9dc", "id": "Cursed Candlestaff", "label": "Cursed Candlestaff", "shape": "dot", "title": "Haunted"}, {"color": "#89f9dc", "id": "Smoke Shield", "label": "Smoke Shield", "shape": "dot", "title": "Haunted"}, {"color": "#89f9dc", "id": "Haunted Gloves", "label": "Haunted Gloves", "shape": "dot", "title": "Haunted"}, {"color": "#89f9dc", "id": "Old Bonnet", "label": "Old Bonnet", "shape": "dot", "title": "Haunted"}, {"color": "#89f9dc", "id": "Maid Outfit", "label": "Maid Outfit", "shape": "dot", "title": "Haunted"}, {"color": "#89f9dc", "id": "Calling Bell", "label": "Calling Bell", "shape": "dot", "title": "Haunted"}, {"color": "#4c4443", "id": "Grandmaster Spear", "label": "Grandmaster Spear", "shape": "dot", "title": "Gladiator"}, {"color": "#4c4443", "id": "Teacher Knife", "label": "Teacher Knife", "shape": "dot", "title": "Gladiator"}, {"color": "#4c4443", "id": "Tactician Rod", "label": "Tactician Rod", "shape": "dot", "title": "Gladiator"}, {"color": "#4c4443", "id": "Spiked Shield", "label": "Spiked Shield", "shape": "dot", "title": "Gladiator"}, {"color": "#4c4443", "id": "Battlemaiden Armor", "label": "Battlemaiden Armor", "shape": "dot", "title": "Gladiator"}, {"color": "#4c4443", "id": "Gladiator Helmet", "label": "Gladiator Helmet", "shape": "dot", "title": "Gladiator"}, {"color": "#4c4443", "id": "Lancer Gauntlets", "label": "Lancer Gauntlets", "shape": "dot", "title": "Gladiator"}, {"color": "#4c4443", "id": "Lion Charm", "label": "Lion Charm", "shape": "dot", "title": "Gladiator"}, {"color": "#3a5bde", "id": "Bluebolt Staff", "label": "Bluebolt Staff", "shape": "dot", "title": "Sparkblade"}, {"color": "#3a5bde", "id": "Lapis Sword", "label": "Lapis Sword", "shape": "dot", "title": "Sparkblade"}, {"color": "#3a5bde", "id": "Shockwave Tome", "label": "Shockwave Tome", "shape": "dot", "title": "Sparkblade"}, {"color": "#3a5bde", "id": "Battery Shield", "label": "Battery Shield", "shape": "dot", "title": "Sparkblade"}, {"color": "#3a5bde", "id": "Raiju Crown", "label": "Raiju Crown", "shape": "dot", "title": "Sparkblade"}, {"color": "#3a5bde", "id": "Staticshock Earrings", "label": "Staticshock Earrings", "shape": "dot", "title": "Sparkblade"}, {"color": "#3a5bde", "id": "Stormdance Gown", "label": "Stormdance Gown", "shape": "dot", "title": "Sparkblade"}, {"color": "#3a5bde", "id": "Blackbolt Ribbon", "label": "Blackbolt Ribbon", "shape": "dot", "title": "Sparkblade"}, {"color": "#d1f3f3", "id": "Crane Katana", "label": "Crane Katana", "shape": "dot", "title": "Swiftflight"}, {"color": "#d1f3f3", "id": "Falconfeather Dagger", "label": "Falconfeather Dagger", "shape": "dot", "title": "Swiftflight"}, {"color": "#d1f3f3", "id": "Tornado Staff", "label": "Tornado Staff", "shape": "dot", "title": "Swiftflight"}, {"color": "#d1f3f3", "id": "Cloud Guard", "label": "Cloud Guard", "shape": "dot", "title": "Swiftflight"}, {"color": "#d1f3f3", "id": "Hermes Bow", "label": "Hermes Bow", "shape": "dot", "title": "Swiftflight"}, {"color": "#d1f3f3", "id": "Talon Charm", "label": "Talon Charm", "shape": "dot", "title": "Swiftflight"}, {"color": "#d1f3f3", "id": "Tiny Wings", "label": "Tiny Wings", "shape": "dot", "title": "Swiftflight"}, {"color": "#d1f3f3", "id": "Feathered Overcoat", "label": "Feathered Overcoat", "shape": "dot", "title": "Swiftflight"}, {"color": "#ed9179", "id": "Sandpriestess Spear", "label": "Sandpriestess Spear", "shape": "dot", "title": "Sacredflame"}, {"color": "#ed9179", "id": "Flamedancer Dagger", "label": "Flamedancer Dagger", "shape": "dot", "title": "Sacredflame"}, {"color": "#ed9179", "id": "Whiteflame Staff", "label": "Whiteflame Staff", "shape": "dot", "title": "Sacredflame"}, {"color": "#ed9179", "id": "Sacred Shield", "label": "Sacred Shield", "shape": "dot", "title": "Sacredflame"}, {"color": "#ed9179", "id": "Marble Clasp", "label": "Marble Clasp", "shape": "dot", "title": "Sacredflame"}, {"color": "#ed9179", "id": "Sun Pendant", "label": "Sun Pendant", "shape": "dot", "title": "Sacredflame"}, {"color": "#ed9179", "id": "Tiny Hourglass", "label": "Tiny Hourglass", "shape": "dot", "title": "Sacredflame"}, {"color": "#ed9179", "id": "Desert Earrings", "label": "Desert Earrings", "shape": "dot", "title": "Sacredflame"}, {"color": "#7ac09a", "id": "Giant Stone Club", "label": "Giant Stone Club", "shape": "dot", "title": "Ruins"}, {"color": "#7ac09a", "id": "Ruins Sword", "label": "Ruins Sword", "shape": "dot", "title": "Ruins"}, {"color": "#7ac09a", "id": "Mountain Staff", "label": "Mountain Staff", "shape": "dot", "title": "Ruins"}, {"color": "#7ac09a", "id": "Boulder Shield", "label": "Boulder Shield", "shape": "dot", "title": "Ruins"}, {"color": "#7ac09a", "id": "Golem\u0027s Claymore", "label": "Golem\u0027s Claymore", "shape": "dot", "title": "Ruins"}, {"color": "#7ac09a", "id": "Stoneplate Armor", "label": "Stoneplate Armor", "shape": "dot", "title": "Ruins"}, {"color": "#7ac09a", "id": "Sacredstone Charm", "label": "Sacredstone Charm", "shape": "dot", "title": "Ruins"}, {"color": "#7ac09a", "id": "Clay Rabbit", "label": "Clay Rabbit", "shape": "dot", "title": "Ruins"}, {"color": "#4ca598", "id": "Waterfall Polearm", "label": "Waterfall Polearm", "shape": "dot", "title": "Lakeshrine"}, {"color": "#4ca598", "id": "Vorpal Dao", "label": "Vorpal Dao", "shape": "dot", "title": "Lakeshrine"}, {"color": "#4ca598", "id": "Jade Staff", "label": "Jade Staff", "shape": "dot", "title": "Lakeshrine"}, {"color": "#4ca598", "id": "Reflection Shield", "label": "Reflection Shield", "shape": "dot", "title": "Lakeshrine"}, {"color": "#4ca598", "id": "Butterfly Hairpin", "label": "Butterfly Hairpin", "shape": "dot", "title": "Lakeshrine"}, {"color": "#4ca598", "id": "Watermage Pendant", "label": "Watermage Pendant", "shape": "dot", "title": "Lakeshrine"}, {"color": "#4ca598", "id": "Raindrop Earrings", "label": "Raindrop Earrings", "shape": "dot", "title": "Lakeshrine"}, {"color": "#4ca598", "id": "Aquamarine Bracelet", "label": "Aquamarine Bracelet", "shape": "dot", "title": "Lakeshrine"}]);
+                  edges = new vis.DataSet([]);
+
+                  nodeColors = {};
+                  allNodes = nodes.get({ returnType: "Object" });
+                  for (nodeId in allNodes) {
+                    nodeColors[nodeId] = allNodes[nodeId].color;
+                  }
+                  allEdges = edges.get({ returnType: "Object" });
+                  // adding nodes and edges to the graph
+                  data = {nodes: nodes, edges: edges};
+
+                  var options = {
+    "configure": {
+        "enabled": true
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": true,
+            "type": "dynamic"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+
+                  
+
+
+                  
+                  // if this network requires displaying the configure window,
+                  // put it in its div
+                  options.configure["container"] = document.getElementById("config");
+                  
+
+                  network = new vis.Network(container, data, options);
+
+                  
+
+                  
+
+                  
+
+
+                  
+                      network.on("stabilizationProgress", function(params) {
+                          document.getElementById('loadingBar').removeAttribute("style");
+                          var maxWidth = 496;
+                          var minWidth = 20;
+                          var widthFactor = params.iterations/params.total;
+                          var width = Math.max(minWidth,maxWidth * widthFactor);
+                          document.getElementById('bar').style.width = width + 'px';
+                          document.getElementById('text').innerHTML = Math.round(widthFactor*100) + '%';
+                      });
+                      network.once("stabilizationIterationsDone", function() {
+                          document.getElementById('text').innerHTML = '100%';
+                          document.getElementById('bar').style.width = '496px';
+                          document.getElementById('loadingBar').style.opacity = 0;
+                          // really clean the dom element
+                          setTimeout(function () {document.getElementById('loadingBar').style.display = 'none';}, 500);
+                      });
+                  
+
+                  return network;
+
+              }
+              drawGraph();
+        </script>
+    </body>
+</html>

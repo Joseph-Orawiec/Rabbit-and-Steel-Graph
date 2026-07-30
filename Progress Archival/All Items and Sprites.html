@@ -1,0 +1,433 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        
+            <script src="lib/bindings/utils.js"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/dist/vis-network.min.css" integrity="sha512-WgxfT5LWjfszlPHXRmBWHkV2eceiWTOBvrKCNbdgDYTHrT2AeLCGbF4sZlZw3UMN3WtL0tGUoIAKsu8mllg/XA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/vis-network.min.js" integrity="sha512-LnvoEWDFrqGHlHmDD2101OrLcbsfkrzoSpvtSQtxK3RMnRV0eOkhhBN2dXHKRrUU8p2DGRTk35n4O8nWSVe1mQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            
+                <link href="lib/tom-select/tom-select.css" rel="stylesheet">
+                <script src="lib/tom-select/tom-select.complete.min.js"></script>
+            
+        
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+        <link
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+          crossorigin="anonymous"
+        />
+        <script
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+          crossorigin="anonymous"
+        ></script>
+
+
+        <center>
+          <h1></h1>
+        </center>
+        <style type="text/css">
+
+             #mynetwork {
+                 width: 1280;
+                 height: 720;
+                 background-color: #ffffff;
+                 border: 1px solid lightgray;
+                 position: relative;
+                 float: left;
+             }
+
+             
+             #loadingBar {
+                 position:absolute;
+                 top:0px;
+                 left:0px;
+                 width: 1280;
+                 height: 720;
+                 background-color:rgba(200,200,200,0.8);
+                 -webkit-transition: all 0.5s ease;
+                 -moz-transition: all 0.5s ease;
+                 -ms-transition: all 0.5s ease;
+                 -o-transition: all 0.5s ease;
+                 transition: all 0.5s ease;
+                 opacity:1;
+             }
+
+             #bar {
+                 position:absolute;
+                 top:0px;
+                 left:0px;
+                 width:20px;
+                 height:20px;
+                 margin:auto auto auto auto;
+                 border-radius:11px;
+                 border:2px solid rgba(30,30,30,0.05);
+                 background: rgb(0, 173, 246); /* Old browsers */
+                 box-shadow: 2px 0px 4px rgba(0,0,0,0.4);
+             }
+
+             #border {
+                 position:absolute;
+                 top:10px;
+                 left:10px;
+                 width:500px;
+                 height:23px;
+                 margin:auto auto auto auto;
+                 box-shadow: 0px 0px 4px rgba(0,0,0,0.2);
+                 border-radius:10px;
+             }
+
+             #text {
+                 position:absolute;
+                 top:8px;
+                 left:530px;
+                 width:30px;
+                 height:50px;
+                 margin:auto auto auto auto;
+                 font-size:22px;
+                 color: #000000;
+             }
+
+             div.outerBorder {
+                 position:relative;
+                 top:400px;
+                 width:600px;
+                 height:44px;
+                 margin:auto auto auto auto;
+                 border:8px solid rgba(0,0,0,0.1);
+                 background: rgb(252,252,252); /* Old browsers */
+                 background: -moz-linear-gradient(top,  rgba(252,252,252,1) 0%, rgba(237,237,237,1) 100%); /* FF3.6+ */
+                 background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(252,252,252,1)), color-stop(100%,rgba(237,237,237,1))); /* Chrome,Safari4+ */
+                 background: -webkit-linear-gradient(top,  rgba(252,252,252,1) 0%,rgba(237,237,237,1) 100%); /* Chrome10+,Safari5.1+ */
+                 background: -o-linear-gradient(top,  rgba(252,252,252,1) 0%,rgba(237,237,237,1) 100%); /* Opera 11.10+ */
+                 background: -ms-linear-gradient(top,  rgba(252,252,252,1) 0%,rgba(237,237,237,1) 100%); /* IE10+ */
+                 background: linear-gradient(to bottom,  rgba(252,252,252,1) 0%,rgba(237,237,237,1) 100%); /* W3C */
+                 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fcfcfc', endColorstr='#ededed',GradientType=0 ); /* IE6-9 */
+                 border-radius:72px;
+                 box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+             }
+             
+
+             
+             #config {
+                 float: left;
+                 width: 400px;
+                 height: 600px;
+             }
+             
+
+             
+        </style>
+    </head>
+
+
+    <body>
+        <div class="card" style="width: 100%">
+            
+            
+              <div id="filter-menu" class="card-header">
+                <div class="row no-gutters">
+                  <div class="col-3 pb-2">
+                    <select
+                            class="form-select"
+                            aria-label="Default select example"
+                            onchange="updateFilter(value, 'item')"
+                            id="select-item"
+                        >
+                        <option value="">Select a network item</option>
+                        <option value="edge">edge</option>
+                        <option value="node">node</option>
+                    </select>
+                  </div>
+                  <div class="col-3 pb-2">
+                    <select
+                            class="form-select"
+                            aria-label="Default select example"
+                            onchange="updateFilter(value, 'property')"
+                            id="select-property"
+                        >
+                        <option value="">Select a property...</option>
+                    </select>
+                  </div>
+                  <div class="col-3 pb-2">
+                    <select
+                            class="form-select"
+                            aria-label="Default select example"
+                            id="select-value"
+                        >
+                        <option value="">Select value(s)...</option>
+                    </select>
+                  </div>
+                  <div class="col-1 pb-2">
+                    <button type="button" class="btn btn-primary btn-block" onclick="highlightFilter(filter);">Filter</button>
+                  </div>
+                  <div class="col-2 pb-2">
+                    <button type="button" class="btn btn-primary btn-block" onclick="clearFilter(true)">Reset Selection</button>
+                  </div>
+                </div>
+              </div>
+            
+            <div id="mynetwork" class="card-body"></div>
+        </div>
+
+        
+            <div id="loadingBar">
+              <div class="outerBorder">
+                <div id="text">0%</div>
+                <div id="border">
+                  <div id="bar"></div>
+                </div>
+              </div>
+            </div>
+        
+        
+            <div id="config"></div>
+        
+
+        <script type="text/javascript">
+
+              // initialize global variables.
+              var edges;
+              var nodes;
+              var allNodes;
+              var allEdges;
+              var nodeColors;
+              var originalNodes;
+              var network;
+              var container;
+              var options, data;
+              var filter = {
+                  item : '',
+                  property : '',
+                  value : []
+              };
+
+              
+
+              
+                  // explicitly using onItemAdd and this function as we need to save multiple values
+                  let updateValueFilter = function() {
+                      return function () {
+                      filter['value'].push(arguments[0])
+                      }
+                  }
+
+                  let valueControl = new TomSelect("#select-value",{
+                      maxItems: null,
+                      valueField: 'id',
+                      labelField: 'title',
+                      searchField: 'title',
+                      create: false,
+                      sortField: {
+                          field: "text",
+                          direction: "asc"
+                      },
+                      onItemAdd: updateValueFilter()
+                  });
+
+                  let addValues = function() {
+                      return function () {
+                          // clear the current value options and add the selected attribute values
+                          // tom-select handles duplicates
+                          let selectedProperty = arguments[0];
+                          valueControl.clear();
+                          valueControl.clearOptions();
+                          filter['value'] = []
+                          if (filter['item'] === 'node') {
+                              for (let each in allNodes) {
+                                  valueControl.addOption({
+                                      id:allNodes[each][selectedProperty],
+                                      title:allNodes[each][selectedProperty]
+                                  })
+                              }
+                          }
+                          else if (filter['item'] === 'edge') {
+                              for (let each in allEdges) {
+                                  valueControl.addOption({
+                                      id:allEdges[each][selectedProperty],
+                                      title:allEdges[each][selectedProperty]
+                                  })
+                              }
+                          }
+                      }
+                  };
+
+                  let propControl = new TomSelect("#select-property",{
+                      valueField: 'id',
+                      labelField: 'title',
+                      searchField: 'title',
+                      create: false,
+                      sortField: {
+                          field: "text",
+                          direction: "asc"
+                      },
+                      onItemAdd: addValues()
+                  });
+
+                  let addProperties = function() {
+                      return function () {
+                          // loops through the selected network item and adds the attributes to dropdown
+                          // tom-select handles duplicates
+                          clearFilter(false)
+                          if (arguments[0] === 'edge') {
+                              for (let each in allEdges) {
+                                  if (allEdges.hasOwnProperty(each)) {
+                                      for (let eachProp in allEdges[each]) {
+                                          if (allEdges[each].hasOwnProperty(eachProp)) {
+                                              propControl.addOption({id: eachProp, title: eachProp})
+                                          }
+                                      }
+                                  }
+                              }
+                          }
+                          else if (arguments[0] === 'node') {
+                              for (let each in allNodes) {
+                                  if (allNodes.hasOwnProperty(each)) {
+                                      for (let eachProp in allNodes[each]) {
+                                          if (allNodes[each].hasOwnProperty(eachProp)
+                                              && (eachProp !== 'hidden' && eachProp !== 'savedLabel'
+                                                  && eachProp !== 'hiddenLabel')) {
+                                              propControl.addOption({id: eachProp, title: eachProp})
+
+                                          }
+                                      }
+                                  }
+                              }
+                          }
+                      }
+                  };
+
+                  let itemControl = new TomSelect("#select-item",{
+                      create: false,
+                      sortField:{
+                          field: "text",
+                          direction: "asc"
+                      },
+                      onItemAdd: addProperties()
+                  });
+
+                  function clearFilter(reset) {
+                      // utility function to clear all the selected filter options
+                      // if reset is set to true, the existing filter will be removed
+                      // else, only the dropdown options are cleared
+                      propControl.clear();
+                      propControl.clearOptions();
+                      valueControl.clear();
+                      valueControl.clearOptions();
+                      filter = {
+                          item : '',
+                          property : '',
+                          value : []
+                      }
+                      if (reset) {
+                          itemControl.clear();
+                          filterHighlight({nodes: []})
+                      }
+                  }
+
+                  function updateFilter(value, key) {
+                      // key could be 'item' or 'property' and value is as selected in dropdown
+                      filter[key] = value
+                  }
+
+              
+
+              // This method is responsible for drawing the graph, returns the drawn network
+              function drawGraph() {
+                  var container = document.getElementById('mynetwork');
+
+                  
+
+                  // parsing and collecting nodes and edges from the python
+                  nodes = new vis.DataSet([{"group": "Arcane", "id": "Raven Grimoire", "image": "sprites/Raven_Grimoire_Icon.webp", "label": "Raven Grimoire", "shape": "circularImage", "size": 10, "title": "Your Special applies CURSE."}, {"group": "Arcane", "id": "Blackwing Staff", "image": "sprites/Blackwing_Staff_Icon.webp", "label": "Blackwing Staff", "shape": "circularImage", "size": 10, "title": "Your Primary applies CURSE."}, {"group": "Arcane", "id": "Curse Talon", "image": "sprites/Curse_Talon_Icon.webp", "label": "Curse Talon", "shape": "circularImage", "size": 10, "title": "Your Secondary applies CURSE."}, {"group": "Arcane", "id": "Darkmagic Blade", "image": "sprites/Darkmagic_Blade_Icon.webp", "label": "Darkmagic Blade", "shape": "circularImage", "size": 10, "title": "Every 10 seconds, slices the air around you dealing 300 damage and applying CURSE to nearby enemies."}, {"group": "Arcane", "id": "Witch\u0027s Cloak", "image": "sprites/Witch\u0027s_Cloak_Icon.webp", "label": "Witch\u0027s Cloak", "shape": "circularImage", "size": 10, "title": "Your Secondary deals 10% more damage.\nDebuffs you place deal 70% more damage."}, {"group": "Arcane", "id": "Crowfeather Hairpin", "image": "sprites/Crowfeather_Hairpin_Icon.webp", "label": "Crowfeather Hairpin", "shape": "circularImage", "size": 10, "title": "Increases Special damage by 20%.\nWhen you place a debuff on an opponent, your Special has a 50% chance of resetting."}, {"group": "Arcane", "id": "Redblack Ribbon", "image": "sprites/Redblack_Ribbon_Icon.webp", "label": "Redblack Ribbon", "shape": "circularImage", "size": 10, "title": "You deal 5% more damage.\nWhen you place a debuff on an opponent, your Defensive has a 50% chance of resetting."}, {"group": "Arcane", "id": "Opal Necklace", "image": "sprites/Opal_Necklace_Icon.webp", "label": "Opal Necklace", "shape": "circularImage", "size": 10, "title": "When you use your Defensive, apply CURSE to all enemies."}, {"group": "Night", "id": "Sleeping Greatbow", "image": "sprites/Sleeping_Greatbow_Icon.webp", "label": "Sleeping Greatbow", "shape": "circularImage", "size": 10, "title": "Every 6 seconds, fires a slow-moving projectile at your targeted enemy that deals 200 damage."}, {"group": "Night", "id": "Crescentmoon Dagger", "image": "sprites/Crescentmoon_Dagger_Icon.webp", "label": "Crescentmoon Dagger", "shape": "circularImage", "size": 10, "title": "Every 10 seconds, your Secondary will deal an additional 400 damage on hit."}, {"group": "Night", "id": "Lullaby Harp", "image": "sprites/Lullaby_Harp_Icon.webp", "label": "Lullaby Harp", "shape": "circularImage", "size": 10, "title": "Every 10 seconds, resets Defensive cooldowns for you and all allies."}, {"group": "Night", "id": "Nightstar Grimoire", "image": "sprites/Nightstar_Grimoire_Icon.webp", "label": "Nightstar Grimoire", "shape": "circularImage", "size": 10, "title": "Every 25 seconds, deal 900 damage to all enemies."}, {"group": "Night", "id": "Moon Pendant", "image": "sprites/Moon_Pendant_Icon.webp", "label": "Moon Pendant", "shape": "circularImage", "size": 10, "title": "Every 12 seconds, using your Special will deal 400 damage to enemies in a moderate radius around you."}, {"group": "Night", "id": "Pajama Hat", "image": "sprites/Pajama_Hat_Icon.webp", "label": "Pajama Hat", "shape": "circularImage", "size": 10, "title": "Defensive and loot cooldowns are shortened by 2 seconds."}, {"group": "Night", "id": "Stuffed Rabbit", "image": "sprites/Stuffed_Rabbit_Icon.webp", "label": "Stuffed Rabbit", "shape": "circularImage", "size": 10, "title": "Increases Special damage by 20%.\nEvery 12 seconds, using your Special will grant you invulnerability for 3 seconds.Starts battle on cooldown."}, {"group": "Night", "id": "Nightingale Gown", "image": "sprites/Nightingale_Gown_Icon.webp", "label": "Nightingale Gown", "shape": "circularImage", "size": 10, "title": "Every 15 seconds, OMEGACHARGE your Special."}, {"group": "Timespace", "id": "Eternity Flute", "image": "sprites/Eternity_Flute_Icon.webp", "label": "Eternity Flute", "shape": "circularImage", "size": 10, "title": "Every 12 seconds, grants HASTE to all allies for 5 seconds."}, {"group": "Timespace", "id": "Timewarp Wand", "image": "sprites/Timewarp_Wand_Icon.webp", "label": "Timewarp Wand", "shape": "circularImage", "size": 10, "title": "Your Secondary has a 40% chance of giving you HASTE for 5 seconds."}, {"group": "Timespace", "id": "Chrome Shield", "image": "sprites/Chrome_Shield_Icon.webp", "label": "Chrome Shield", "shape": "circularImage", "size": 10, "title": "Using your Defensive will grant you HASTE for 8 seconds."}, {"group": "Timespace", "id": "Clockwork Tome", "image": "sprites/Clockwork_Tome_Icon.webp", "label": "Clockwork Tome", "shape": "circularImage", "size": 10, "title": "Your Special has a 50% chance of giving you HASTE for 8 seconds."}, {"group": "Timespace", "id": "Metronome Boots", "image": "sprites/Metronome_Boots_Icon.webp", "label": "Metronome Boots", "shape": "circularImage", "size": 10, "title": "Your GCDs become 1.10 seconds.\nAlso moderately increases movement speed."}, {"group": "Timespace", "id": "Timemage Cap", "image": "sprites/Timemage_Cap_Icon.webp", "label": "Timemage Cap", "shape": "circularImage", "size": 10, "title": "Cooldowns less than or equal to 10 seconds become 5 seconds."}, {"group": "Timespace", "id": "Starry Cloak", "image": "sprites/Starry_Cloak_Icon.webp", "label": "Starry Cloak", "shape": "circularImage", "size": 10, "title": "Your Defensive\u0027s cooldown becomes 10 seconds."}, {"group": "Timespace", "id": "Gemini Necklace", "image": "sprites/Gemini_Necklace_Icon.webp", "label": "Gemini Necklace", "shape": "circularImage", "size": 10, "title": "Your Special and Defensive have a 30% chance of instantly resetting when used."}, {"group": "Wind", "id": "Hawkfeather Fan", "image": "sprites/Hawkfeather_Fan_Icon.webp", "label": "Hawkfeather Fan", "shape": "circularImage", "size": 10, "title": "Reduces your Special\u0027s cooldown by 2 seconds."}, {"group": "Wind", "id": "Windbite Dagger", "image": "sprites/Windbite_Dagger_Icon.webp", "label": "Windbite Dagger", "shape": "circularImage", "size": 10, "title": "Your Secondary\u0027s GCD becomes 0.50 seconds, but its damage is reduced by 60%."}, {"group": "Wind", "id": "Pidgeon Bow", "image": "sprites/Pidgeon_Bow_Icon.webp", "label": "Pidgeon Bow", "shape": "circularImage", "size": 10, "title": "Every 3 seconds, fires a projectile at your targeted enemy that deals 70 damage."}, {"group": "Wind", "id": "Shinsoku Katana", "image": "sprites/Shinsoku_Katana_Icon.webp", "label": "Shinsoku Katana", "shape": "circularImage", "size": 10, "title": "Your Primary\u0027s GCD has a 50% chance to be 0.80 seconds instead of its normal amount."}, {"group": "Wind", "id": "Eaglewing Charm", "image": "sprites/Eaglewing_Charm_Icon.webp", "label": "Eaglewing Charm", "shape": "circularImage", "size": 10, "title": "All your abilities deal 20 more damage."}, {"group": "Wind", "id": "Sparrow Feather", "image": "sprites/Sparrow_Feather_Icon.webp", "label": "Sparrow Feather", "shape": "circularImage", "size": 10, "title": "Deals 50 damage to all enemies when your Primary or Secondary is used."}, {"group": "Wind", "id": "Winged Cap", "image": "sprites/Winged_Cap_Icon.webp", "label": "Winged Cap", "shape": "circularImage", "size": 10, "title": "Grants a brief speed boost when your Secondary is used.\nAlso increases base movement speed slightly."}, {"group": "Wind", "id": "Thief\u0027s Coat", "image": "sprites/Thief\u0027s_Coat_Icon.webp", "label": "Thief\u0027s Coat", "shape": "circularImage", "size": 10, "title": "Every 10 seconds, VANISH for 3 seconds and gain a brief speed boost when you use your Special.\nAlso increases base movement speed slightly."}, {"group": "Bloodwolf", "id": "Vampiric Dagger", "image": "sprites/Vampiric_Dagger_Icon.webp", "label": "Vampiric Dagger", "shape": "circularImage", "size": 10, "title": "Your Secondary inflicts BLEED."}, {"group": "Bloodwolf", "id": "Bloody Bandage", "image": "sprites/Bloody_Bandage_Icon.webp", "label": "Bloody Bandage", "shape": "circularImage", "size": 10, "title": "When you use your Defensive, apply BLEED to all enemies."}, {"group": "Bloodwolf", "id": "Leech Staff", "image": "sprites/Leech_Staff_Icon.webp", "label": "Leech Staff", "shape": "circularImage", "size": 10, "title": "Your Primary inflicts BLEED."}, {"group": "Bloodwolf", "id": "Bloodhound Greatsword", "image": "sprites/Bloodhound_Greatsword_Icon.webp", "label": "Bloodhound Greatsword", "shape": "circularImage", "size": 10, "title": "Every 10 seconds, slices the air around you dealing 300 damage and applying BLEED to nearby enemies."}, {"group": "Bloodwolf", "id": "Reaper Cloak", "image": "sprites/Reaper_Cloak_Icon.webp", "label": "Reaper Cloak", "shape": "circularImage", "size": 10, "title": "Your Defensive additionally deals 100 damage 3 times to enemies facing away from you."}, {"group": "Bloodwolf", "id": "Bloodflower Brooch", "image": "sprites/Bloodflower_Brooch_Icon.webp", "label": "Bloodflower Brooch", "shape": "circularImage", "size": 10, "title": "All abilities deal 40 damage 2 times to enemies facing away from you."}, {"group": "Bloodwolf", "id": "Wolf Hood", "image": "sprites/Wolf_Hood_Icon.webp", "label": "Wolf Hood", "shape": "circularImage", "size": 10, "title": "Every 6 seconds when you use your Primary, deal 250 damage to enemies facing away from you."}, {"group": "Bloodwolf", "id": "Blood Vial", "image": "sprites/Blood_Vial_Icon.webp", "label": "Blood Vial", "shape": "circularImage", "size": 10, "title": "At the start of each fight, inflict all enemies with SAP for 60 seconds."}, {"group": "Assassin", "id": "Black Wakizashi", "image": "sprites/Black_Wakizashi_Icon.webp", "label": "Black Wakizashi", "shape": "circularImage", "size": 10, "title": "Your Primary has a 30% chance of dealing an additional 3 blows, dealing 50 damage each, in a radius around your target enemy."}, {"group": "Assassin", "id": "Throwing Dagger", "image": "sprites/Throwing_Dagger_Icon.webp", "label": "Throwing Dagger", "shape": "circularImage", "size": 10, "title": "Every 5 seconds, fires a projectile at your targeted enemy that deals 120 damage.\nCooldown resets every time you use your Special."}, {"group": "Assassin", "id": "Assassin\u0027s Knife", "image": "sprites/Assassin\u0027s_Knife_Icon.webp", "label": "Assassin\u0027s Knife", "shape": "circularImage", "size": 10, "title": "Your Secondary has a 30% chance of dealing an additional 2 blows, dealing 50 damage each, in a radius around your target enemy."}, {"group": "Assassin", "id": "Ninjutsu Scroll", "image": "sprites/Ninjutsu_Scroll_Icon.webp", "label": "Ninjutsu Scroll", "shape": "circularImage", "size": 10, "title": "Your Special has a 30% chance of dealing an additional 3 blows, dealing 150 damage each, in a radius around your target enemy."}, {"group": "Assassin", "id": "Shadow Bracelet", "image": "sprites/Shadow_Bracelet_Icon.webp", "label": "Shadow Bracelet", "shape": "circularImage", "size": 10, "title": "Abilities and loot that hit more than once deal 30 more damage."}, {"group": "Assassin", "id": "Ninja Robe", "image": "sprites/Ninja_Robe_Icon.webp", "label": "Ninja Robe", "shape": "circularImage", "size": 10, "title": "When a % chance succeeds, erase projectiles around you and VANISH for 3 seconds."}, {"group": "Assassin", "id": "Kunoichi Hood", "image": "sprites/Kunoichi_Hood_Icon.webp", "label": "Kunoichi Hood", "shape": "circularImage", "size": 10, "title": "Your abilities do 15 more damage.\nYour loot does 50 more damage."}, {"group": "Assassin", "id": "Shinobi Tabi", "image": "sprites/Shinobi_Tabi_Icon.webp", "label": "Shinobi Tabi", "shape": "circularImage", "size": 10, "title": "Standing still will cause you to VANISH for 5 seconds and resets your Special.\nAvailable every 8 seconds.Starts battle on cooldown."}, {"group": "Rockdragon", "id": "Dragonhead Spear", "image": "sprites/Dragonhead_Spear_Icon.webp", "label": "Dragonhead Spear", "shape": "circularImage", "size": 10, "title": "Your Primary is 40% more powerful, but gains a cooldown of 3 seconds.\nAlso slightly reduces movement speed."}, {"group": "Rockdragon", "id": "Granite Greatsword", "image": "sprites/Granite_Greatsword_Icon.webp", "label": "Granite Greatsword", "shape": "circularImage", "size": 10, "title": "Every 16 seconds, slices a large radius around you dealing 700 damage."}, {"group": "Rockdragon", "id": "Greysteel Shield", "image": "sprites/Greysteel_Shield_Icon.webp", "label": "Greysteel Shield", "shape": "circularImage", "size": 10, "title": "Your Defensive has a 30% larger radius.\nInvulnerability effects last 1 second longer."}, {"group": "Rockdragon", "id": "Stonebreaker Staff", "image": "sprites/Stonebreaker_Staff_Icon.webp", "label": "Stonebreaker Staff", "shape": "circularImage", "size": 10, "title": "Your Special\u0027s cooldown is increased by 2 seconds, but deals 40% more damage."}, {"group": "Rockdragon", "id": "Tough Gauntlet", "image": "sprites/Tough_Gauntlet_Icon.webp", "label": "Tough Gauntlet", "shape": "circularImage", "size": 10, "title": "Your abilities and loot all deal 30% more damage, but all GCDs are 0.20 seconds longer."}, {"group": "Rockdragon", "id": "Rockdragon Mail", "image": "sprites/Rockdragon_Mail_Icon.webp", "label": "Rockdragon Mail", "shape": "circularImage", "size": 10, "title": "Your movement speed is significantly reduced.\nWill shield you from damage every 45 seconds.Starts battle on 5 second cooldown."}, {"group": "Rockdragon", "id": "Obsidian Hairpin", "image": "sprites/Obsidian_Hairpin_Icon.webp", "label": "Obsidian Hairpin", "shape": "circularImage", "size": 10, "title": "Increases Special damage by 20%.\nWhenever you gain invulnerability, your Special has a 50% percent chance of resetting."}, {"group": "Rockdragon", "id": "Iron Greaves", "image": "sprites/Iron_Greaves_Icon.webp", "label": "Iron Greaves", "shape": "circularImage", "size": 10, "title": "Every 12 seconds, standing still will grant brief invulnerability and reset your Defensive.\nMovement speed is slightly reduced.Starts battle on cooldown."}, {"group": "Flame", "id": "Volcano Spear", "image": "sprites/Volcano_Spear_Icon.webp", "label": "Volcano Spear", "shape": "circularImage", "size": 10, "title": "Your Primary inflicts BURN."}, {"group": "Flame", "id": "Reddragon Blade", "image": "sprites/Reddragon_Blade_Icon.webp", "label": "Reddragon Blade", "shape": "circularImage", "size": 10, "title": "Your Secondary inflicts BURN."}, {"group": "Flame", "id": "Flame Bow", "image": "sprites/Flame_Bow_Icon.webp", "label": "Flame Bow", "shape": "circularImage", "size": 10, "title": "Every 10 seconds, fires a projectile at your targeted enemy that deals 180 damage and applies BURN."}, {"group": "Flame", "id": "Meteor Staff", "image": "sprites/Meteor_Staff_Icon.webp", "label": "Meteor Staff", "shape": "circularImage", "size": 10, "title": "Your Special inflicts BURN."}, {"group": "Flame", "id": "Phoenix Charm", "image": "sprites/Phoenix_Charm_Icon.webp", "label": "Phoenix Charm", "shape": "circularImage", "size": 10, "title": "If you perish in battle, restore to full HP instead.\nOnly works once."}, {"group": "Flame", "id": "Firescale Corset", "image": "sprites/Firescale_Corset_Icon.webp", "label": "Firescale Corset", "shape": "circularImage", "size": 10, "title": "All of your cooldowns are reduced by 3 seconds.\nIf you use your Defensive, this effect ends until the end of battle."}, {"group": "Flame", "id": "Demon Horns", "image": "sprites/Demon_Horns_Icon.webp", "label": "Demon Horns", "shape": "circularImage", "size": 10, "title": "All your abilities and loot deal 30% more damage.\nIf you use your Defensive, this effect ends until the end of battle."}, {"group": "Flame", "id": "Flamewalker Boots", "image": "sprites/Flamewalker_Boots_Icon.webp", "label": "Flamewalker Boots", "shape": "circularImage", "size": 10, "title": "All GCDs are shortened by 15% and your movement speed is increased significantly.\nIf you use your Defensive, this effect ends until the end of battle."}, {"group": "Gem", "id": "Diamond Shield", "image": "sprites/Diamond_Shield_Icon.webp", "label": "Diamond Shield", "shape": "circularImage", "size": 10, "title": "Every 25 seconds, using your Defensive will grant you invulnerability for 5 seconds and erase projectiles in a large radius around you.\nStarts battle on 10 second cooldown."}, {"group": "Gem", "id": "Peridot Rapier", "image": "sprites/Peridot_Rapier_Icon.webp", "label": "Peridot Rapier", "shape": "circularImage", "size": 10, "title": "Increases Secondary damage by 20%.\nEvery 8 seconds, using your Secondary will grant you brief invulnerability and erase projectiles in a large radius around you."}, {"group": "Gem", "id": "Garnet Staff", "image": "sprites/Garnet_Staff_Icon.webp", "label": "Garnet Staff", "shape": "circularImage", "size": 10, "title": "Increases Special damage by 20%.\nYour Special will erase projectiles in a radius around you and grant brief invulnerability."}, {"group": "Gem", "id": "Sapphire Violin", "image": "sprites/Sapphire_Violin_Icon.webp", "label": "Sapphire Violin", "shape": "circularImage", "size": 10, "title": "Every 18 seconds, grants ELEGY to all allies for 8 seconds.\nBreaks if you take damage twice.Starts battle on cooldown."}, {"group": "Gem", "id": "Emerald Chestplate", "image": "sprites/Emerald_Chestplate_Icon.webp", "label": "Emerald Chestplate", "shape": "circularImage", "size": 10, "title": "The counter on this item will decrease instead of you taking damage.\nThe counter starts at 3 on pickup."}, {"group": "Gem", "id": "Amethyst Bracelet", "image": "sprites/Amethyst_Bracelet_Icon.webp", "label": "Amethyst Bracelet", "shape": "circularImage", "size": 10, "title": "Deal 30% more damage.\nBreaks if you take damage 3 times."}, {"group": "Gem", "id": "Topaz Charm", "image": "sprites/Topaz_Charm_Icon.webp", "label": "Topaz Charm", "shape": "circularImage", "size": 10, "title": "Gain 8 extra Gold at the end of each fight.\nBreaks if you take damage 3 times."}, {"group": "Gem", "id": "Ruby Circlet", "image": "sprites/Ruby_Circlet_Icon.webp", "label": "Ruby Circlet", "shape": "circularImage", "size": 10, "title": "Your Special deals 80% more damage.\nBreaks if you take damage once."}, {"group": "Lightning", "id": "Brightstorm Spear", "image": "sprites/Brightstorm_Spear_Icon.webp", "label": "Brightstorm Spear", "shape": "circularImage", "size": 10, "title": "Has a 30% chance of dealing 100 damage to all enemies when your Primary does damage."}, {"group": "Lightning", "id": "Bolt Staff", "image": "sprites/Bolt_Staff_Icon.webp", "label": "Bolt Staff", "shape": "circularImage", "size": 10, "title": "Deals 150 damage to all enemies when you use your Special."}, {"group": "Lightning", "id": "Lightning Bow", "image": "sprites/Lightning_Bow_Icon.webp", "label": "Lightning Bow", "shape": "circularImage", "size": 10, "title": "Every 12 seconds, fires a projectile at your targeted enemy that deals 300 damage.\nCooldown instantly resets when a % chance succeeds."}, {"group": "Lightning", "id": "Darkstorm Knife", "image": "sprites/Darkstorm_Knife_Icon.webp", "label": "Darkstorm Knife", "shape": "circularImage", "size": 10, "title": "Has a 30% chance of dealing 100 damage to all enemies when your Secondary does damage."}, {"group": "Lightning", "id": "Darkcloud Necklace", "image": "sprites/Darkcloud_Necklace_Icon.webp", "label": "Darkcloud Necklace", "shape": "circularImage", "size": 10, "title": "Damage from loot is increased 50%."}, {"group": "Lightning", "id": "Crown of Storms", "image": "sprites/Crown_of_Storms_Icon.webp", "label": "Crown of Storms", "shape": "circularImage", "size": 10, "title": "When a % chance succeeds, deal 200 damage to all enemies."}, {"group": "Lightning", "id": "Thunderclap Gloves", "image": "sprites/Thunderclap_Gloves_Icon.webp", "label": "Thunderclap Gloves", "shape": "circularImage", "size": 10, "title": "All abilities have a 20% chance of dealing 200 damage to all enemies when used."}, {"group": "Lightning", "id": "Storm Petticoat", "image": "sprites/Storm_Petticoat_Icon.webp", "label": "Storm Petticoat", "shape": "circularImage", "size": 10, "title": "Do 250 damage to all enemies when you gain invulnerability."}, {"group": "Shrine", "id": "Holy Greatsword", "image": "sprites/Holy_Greatsword_Icon.webp", "label": "Holy Greatsword", "shape": "circularImage", "size": 10, "title": "Every 10 seconds, grants you SMITE and then slices the air around you, dealing 200 damage to nearby enemies."}, {"group": "Shrine", "id": "Sacred Bow", "image": "sprites/Sacred_Bow_Icon.webp", "label": "Sacred Bow", "shape": "circularImage", "size": 10, "title": "Every 10 seconds, fires a projectile at your targeted enemy that deals 250 damage.\nCooldown instantly resets when you gain a buff."}, {"group": "Shrine", "id": "Purification Rod", "image": "sprites/Purification_Rod_Icon.webp", "label": "Purification Rod", "shape": "circularImage", "size": 10, "title": "Every 18 seconds, using your Primary will give you ELEGY for 5 seconds."}, {"group": "Shrine", "id": "Ornamental Bell", "image": "sprites/Ornamental_Bell_Icon.webp", "label": "Ornamental Bell", "shape": "circularImage", "size": 10, "title": "Every 15 seconds, grants SMITE to all allies for 10 seconds."}, {"group": "Shrine", "id": "Shrinemaiden\u0027s Kosode", "image": "sprites/Shrinemaiden\u0027s_Kosode_Icon.webp", "label": "Shrinemaiden\u0027s Kosode", "shape": "circularImage", "size": 10, "title": "When you have a buff, your movement speed increases significantly and you deal 25% more damage."}, {"group": "Shrine", "id": "Redwhite Ribbon", "image": "sprites/Redwhite_Ribbon_Icon.webp", "label": "Redwhite Ribbon", "shape": "circularImage", "size": 10, "title": "You deal 5% more damage.\nBuffs you place last 50% longer."}, {"group": "Shrine", "id": "Divine Mirror", "image": "sprites/Divine_Mirror_Icon.webp", "label": "Divine Mirror", "shape": "circularImage", "size": 10, "title": "Every 10 times you use an ability, deal 500 damage to all enemies."}, {"group": "Shrine", "id": "Golden Chime", "image": "sprites/Golden_Chime_Icon.webp", "label": "Golden Chime", "shape": "circularImage", "size": 10, "title": "Every 2 times you use your Defensive, gain ELEGY."}, {"group": "Lucky", "id": "Book of Cheats", "image": "sprites/Book_of_Cheats_Icon.webp", "label": "Book of Cheats", "shape": "circularImage", "size": 10, "title": "Your Special will have random, chaotic effects."}, {"group": "Lucky", "id": "Golden Katana", "image": "sprites/Golden_Katana_Icon.webp", "label": "Golden Katana", "shape": "circularImage", "size": 10, "title": "Your Primary and Secondary have a 5% chance to deal 100 damage 5 times to a large radius around your targeted enemy when used."}, {"group": "Lucky", "id": "Glittering Trumpet", "image": "sprites/Glittering_Trumpet_Icon.webp", "label": "Glittering Trumpet", "shape": "circularImage", "size": 10, "title": "Every 20 seconds, grant RABBITLUCK to all allies.\nCooldown cannot be reset by ability or loot effects."}, {"group": "Lucky", "id": "Royal Staff", "image": "sprites/Royal_Staff_Icon.webp", "label": "Royal Staff", "shape": "circularImage", "size": 10, "title": "Your Special deals extra damage based on how much gold you have (1% for every 1 gold)."}, {"group": "Lucky", "id": "Ballroom Gown", "image": "sprites/Ballroom_Gown_Icon.webp", "label": "Ballroom Gown", "shape": "circularImage", "size": 10, "title": "Makes you slightly luckier and slightly increases your movement speed."}, {"group": "Lucky", "id": "Silver Coin", "image": "sprites/Silver_Coin_Icon.webp", "label": "Silver Coin", "shape": "circularImage", "size": 10, "title": "On pickup, gain 30 gold."}, {"group": "Lucky", "id": "Queen\u0027s Crown", "image": "sprites/Queen\u0027s_Crown_Icon.webp", "label": "Queen\u0027s Crown", "shape": "circularImage", "size": 10, "title": "Critical hits now deal 175% extra damage, instead of their normal 75% extra damage."}, {"group": "Lucky", "id": "Mimick Rabbitfoot", "image": "sprites/Mimick_Rabbitfoot_Icon.webp", "label": "Mimick Rabbitfoot", "shape": "circularImage", "size": 10, "title": "Makes you significantly luckier.\nNot a real rabbit\u0027s foot."}, {"group": "Life", "id": "Butterfly Ocarina", "image": "sprites/Butterfly_Ocarina_Icon.webp", "label": "Butterfly Ocarina", "shape": "circularImage", "size": 10, "title": "On pickup, heal all allies for 1.\nHeals all allies for 1 HP every 2 fights."}, {"group": "Life", "id": "Fairy Spear", "image": "sprites/Fairy_Spear_Icon.webp", "label": "Fairy Spear", "shape": "circularImage", "size": 10, "title": "Your Primary has a 30% larger radius and deals 30% more damage, but stops movement when used."}, {"group": "Life", "id": "Moss Shield", "image": "sprites/Moss_Shield_Icon.webp", "label": "Moss Shield", "shape": "circularImage", "size": 10, "title": "Every 12 seconds, using your Defensive will reset its cooldown instantly."}, {"group": "Life", "id": "Floral Bow", "image": "sprites/Floral_Bow_Icon.webp", "label": "Floral Bow", "shape": "circularImage", "size": 10, "title": "Every 6 seconds, fires a projectile at your targeted enemy that deals 250 damage.\nOnly activates while standing still."}, {"group": "Life", "id": "Blue Rose", "image": "sprites/Blue_Rose_Icon.webp", "label": "Blue Rose", "shape": "circularImage", "size": 10, "title": "Your max HP is increased by 1.\nHas a 50% chance of healing you for 1 at the end of each fight."}, {"group": "Life", "id": "Sunflower Crown", "image": "sprites/Sunflower_Crown_Icon.webp", "label": "Sunflower Crown", "shape": "circularImage", "size": 10, "title": "Your max HP is increased by 1.\nYou become able to graze slightly into a projectile without taking damage."}, {"group": "Life", "id": "Midsummer Dress", "image": "sprites/Midsummer_Dress_Icon.webp", "label": "Midsummer Dress", "shape": "circularImage", "size": 10, "title": "Your max HP is increased by 1.\nAbility or loot effects that temporarily slow your movement no longer affect you."}, {"group": "Life", "id": "Grasswoven Bracelet", "image": "sprites/Grasswoven_Bracelet_Icon.webp", "label": "Grasswoven Bracelet", "shape": "circularImage", "size": 10, "title": "Your max HP is increased by 1.\nAll abilities and loot\u0027s hitboxes are 30% larger."}, {"group": "Poison", "id": "Snakefang Dagger", "image": "sprites/Snakefang_Dagger_Icon.webp", "label": "Snakefang Dagger", "shape": "circularImage", "size": 10, "title": "Your Secondary applies POISON for 5 seconds."}, {"group": "Poison", "id": "Ivy Staff", "image": "sprites/Ivy_Staff_Icon.webp", "label": "Ivy Staff", "shape": "circularImage", "size": 10, "title": "Your Primary applies POISON for 5 seconds."}, {"group": "Poison", "id": "Deathcap Tome", "image": "sprites/Deathcap_Tome_Icon.webp", "label": "Deathcap Tome", "shape": "circularImage", "size": 10, "title": "Your Special applies POISON for 5 seconds."}, {"group": "Poison", "id": "Spiderbite Bow", "image": "sprites/Spiderbite_Bow_Icon.webp", "label": "Spiderbite Bow", "shape": "circularImage", "size": 10, "title": "Every 10 seconds, fires a projectile at your targeted enemy that deals 50 damage and applies POISON for 5 seconds."}, {"group": "Poison", "id": "Compound Gloves", "image": "sprites/Compound_Gloves_Icon.webp", "label": "Compound Gloves", "shape": "circularImage", "size": 10, "title": "When you deal damage, has a 10% chance to apply DECAY."}, {"group": "Poison", "id": "Poisonfrog Charm", "image": "sprites/Poisonfrog_Charm_Icon.webp", "label": "Poisonfrog Charm", "shape": "circularImage", "size": 10, "title": "When a % chance succeeds, apply POISON to all enemies for 5 seconds."}, {"group": "Poison", "id": "Venom Hood", "image": "sprites/Venom_Hood_Icon.webp", "label": "Venom Hood", "shape": "circularImage", "size": 10, "title": "Your abilities do 15 more damage.\nDebuffs you place deal 50 more damage."}, {"group": "Poison", "id": "Chemist\u0027s Coat", "image": "sprites/Chemist\u0027s_Coat_Icon.webp", "label": "Chemist\u0027s Coat", "shape": "circularImage", "size": 10, "title": "Your Defensive applies POISON to nearby enemies for 8 seconds.\nSlightly increases movement speed."}, {"group": "Depth", "id": "Seashell Shield", "image": "sprites/Seashell_Shield_Icon.webp", "label": "Seashell Shield", "shape": "circularImage", "size": 10, "title": "Your Defensive has a random cooldown between 1 second and 15 seconds every time you use it."}, {"group": "Depth", "id": "Necronomicon", "image": "sprites/Necronomicon_Icon.webp", "label": "Necronomicon", "shape": "circularImage", "size": 10, "title": "Every 8 seconds, using your Special will reset its cooldown instantly and CHARGE it."}, {"group": "Depth", "id": "Tidal Greatsword", "image": "sprites/Tidal_Greatsword_Icon.webp", "label": "Tidal Greatsword", "shape": "circularImage", "size": 10, "title": "Every 12 seconds, slices a large radius around you dealing 200 damage.\nSlowly gets larger and deals more damage as a fight drags on."}, {"group": "Depth", "id": "Occult Dagger", "image": "sprites/Occult_Dagger_Icon.webp", "label": "Occult Dagger", "shape": "circularImage", "size": 10, "title": "Your Secondary is 80% more powerful, but gains a cooldown of 5 seconds."}, {"group": "Depth", "id": "Mermaid Scalemail", "image": "sprites/Mermaid_Scalemail_Icon.webp", "label": "Mermaid Scalemail", "shape": "circularImage", "size": 10, "title": "All cooldowns are reduced by 2 seconds.\nAll loot and abilities with cooldowns start battles on a 8 second cooldown."}, {"group": "Depth", "id": "Hydrous Blob", "image": "sprites/Hydrous_Blob_Icon.webp", "label": "Hydrous Blob", "shape": "circularImage", "size": 10, "title": "Every 8 seconds, using your Secondary will fire an eldritch beast towards your target, dealing 250 damage.\nStarts battles on cooldown."}, {"group": "Depth", "id": "Abyss Artifact", "image": "sprites/Abyss_Artifact_Icon.webp", "label": "Abyss Artifact", "shape": "circularImage", "size": 10, "title": "Every 30 seconds, using your Defensive will grant you SUPER for 8 seconds.\nStarts on a 15 second cooldown."}, {"group": "Depth", "id": "Lost Pendant", "image": "sprites/Lost_Pendant_Icon.webp", "label": "Lost Pendant", "shape": "circularImage", "size": 10, "title": "At the start of each fight, inflict all enemies with DECAY for 60 seconds."}, {"group": "Darkbite", "id": "Sawtooth Cleaver", "image": "sprites/Sawtooth_Cleaver_Icon.webp", "label": "Sawtooth Cleaver", "shape": "circularImage", "size": 10, "title": "Increases your Primary\u0027s damage by 30%, but decreases its radius by 20%."}, {"group": "Darkbite", "id": "Raven\u0027s Dagger", "image": "sprites/Raven\u0027s_Dagger_Icon.webp", "label": "Raven\u0027s Dagger", "shape": "circularImage", "size": 10, "title": "Increases your Secondary\u0027s damage by 50%, but decreases its radius by 40%."}, {"group": "Darkbite", "id": "Killing Note", "image": "sprites/Killing_Note_Icon.webp", "label": "Killing Note", "shape": "circularImage", "size": 10, "title": "Increases your Special\u0027s damage by 30%, but decreases its radius by 20%."}, {"group": "Darkbite", "id": "Blacksteel Buckler", "image": "sprites/Blacksteel_Buckler_Icon.webp", "label": "Blacksteel Buckler", "shape": "circularImage", "size": 10, "title": "Your Defensive\u0027s range decreases by 30%, but now has a 2 seconds shorter cooldown and grants COUNTER."}, {"group": "Darkbite", "id": "Nightguard Gloves", "image": "sprites/Nightguard_Gloves_Icon.webp", "label": "Nightguard Gloves", "shape": "circularImage", "size": 10, "title": "Whichever ability has the highest base damage value deals 20% more damage."}, {"group": "Darkbite", "id": "Sniper\u0027s Eyeglasses", "image": "sprites/Sniper\u0027s_Eyeglasses_Icon.webp", "label": "Sniper\u0027s Eyeglasses", "shape": "circularImage", "size": 10, "title": "You deal 30% more damage when you are separated from your target by at least 3 rabbitleaps."}, {"group": "Darkbite", "id": "Darkmage Charm", "image": "sprites/Darkmage_Charm_Icon.webp", "label": "Darkmage Charm", "shape": "circularImage", "size": 10, "title": "When you\u0027ve been standing still for 1 second, your Special deals 40% more damage."}, {"group": "Darkbite", "id": "Firststrike Bracelet", "image": "sprites/Firststrike_Bracelet_Icon.webp", "label": "Firststrike Bracelet", "shape": "circularImage", "size": 10, "title": "Every 15 seconds, gain BLACKSTRIKE when you use your Secondary.\nStarts the battle off cooldown."}, {"group": "Timegem", "id": "Obsidian Rod", "image": "sprites/Obsidian_Rod_Icon.webp", "label": "Obsidian Rod", "shape": "circularImage", "size": 10, "title": "Your Special\u0027s strength becomes the total cooldown time of all your abilities and loot, in seconds, multiplied by 10, divided by the times it hits your target (Maximum of 800 total)."}, {"group": "Timegem", "id": "Darkglass Spear", "image": "sprites/Darkglass_Spear_Icon.webp", "label": "Darkglass Spear", "shape": "circularImage", "size": 10, "title": "Your Primary\u0027s strength becomes your Special\u0027s cooldown, multiplied by 30, minus your Secondary\u0027s strength, divided by the times your Primary hits your target (Maximum of 500 total)."}, {"group": "Timegem", "id": "Timespace Dagger", "image": "sprites/Timespace_Dagger_Icon.webp", "label": "Timespace Dagger", "shape": "circularImage", "size": 10, "title": "Your Secondary\u0027s strength becomes your Special and Defensive\u0027s cooldown added together, multiplied by 10, divided by the times your Secondary hits your target. (Maximum of 500 total)."}, {"group": "Timegem", "id": "Quartz Shield", "image": "sprites/Quartz_Shield_Icon.webp", "label": "Quartz Shield", "shape": "circularImage", "size": 10, "title": "Your Defensive\u0027s cooldown becomes 30 seconds.\nWhen a loot item with a cooldown activates, the remaining timer on your Defensive is reduced by that amount."}, {"group": "Timegem", "id": "Pocketwatch", "image": "sprites/Pocketwatch_Icon.webp", "label": "Pocketwatch", "shape": "circularImage", "size": 10, "title": "Abilities with a GCD less than or equal to 1.10 seconds deal 30% more damage."}, {"group": "Timegem", "id": "Nova Crown", "image": "sprites/Nova_Crown_Icon.webp", "label": "Nova Crown", "shape": "circularImage", "size": 10, "title": "Your Special\u0027s cooldown becomes 30 seconds.\nEvery 8 seconds, this loot item reduces your Special\u0027s cooldown timer to 1 second and CHARGES it."}, {"group": "Timegem", "id": "Blackhole Charm", "image": "sprites/Blackhole_Charm_Icon.webp", "label": "Blackhole Charm", "shape": "circularImage", "size": 10, "title": "Deal 200 damage to all enemies when you use an ability or loot item with a cooldown of 10 seconds or more.\nHits one extra time for every 10 seconds longer the cooldown is than that, up to 5 times."}, {"group": "Timegem", "id": "Twinstar Earrings", "image": "sprites/Twinstar_Earrings_Icon.webp", "label": "Twinstar Earrings", "shape": "circularImage", "size": 10, "title": "Your Primary and Secondary now have a 2 second GCD, and deal 70% more damage."}, {"group": "Youkai", "id": "Kyou No Omikuji", "image": "sprites/Kyou_No_Omikuji_Icon.webp", "label": "Kyou No Omikuji", "shape": "circularImage", "size": 10, "title": "All damage you deal increases by 50%.\n% chance triggers no longer happen, and you no longer hit for critical damage."}, {"group": "Youkai", "id": "Youkai Bracelet", "image": "sprites/Youkai_Bracelet_Icon.webp", "label": "Youkai Bracelet", "shape": "circularImage", "size": 10, "title": "All damage you deal increases by 40%.\nYour attacks will no longer have randomized damage, or hit for critical damage."}, {"group": "Youkai", "id": "Oni Staff", "image": "sprites/Oni_Staff_Icon.webp", "label": "Oni Staff", "shape": "circularImage", "size": 10, "title": "Your Special deals 30% more damage.\nWhen a % chance succeeds, your Special goes on a 8 second cooldown."}, {"group": "Youkai", "id": "Kappa Shield", "image": "sprites/Kappa_Shield_Icon.webp", "label": "Kappa Shield", "shape": "circularImage", "size": 10, "title": "Your Defensive has a 3 seconds shorter cooldown, but can no longer be reset by ability or loot effects."}, {"group": "Youkai", "id": "Usagi Kamen", "image": "sprites/Usagi_Kamen_Icon.webp", "label": "Usagi Kamen", "shape": "circularImage", "size": 10, "title": "When a % chance succeeds, gain a random buff for 5 seconds."}, {"group": "Youkai", "id": "Red Tanzaku", "image": "sprites/Red_Tanzaku_Icon.webp", "label": "Red Tanzaku", "shape": "circularImage", "size": 10, "title": "Miracles occasionally happen."}, {"group": "Youkai", "id": "Vega Spear", "image": "sprites/Vega_Spear_Icon.webp", "label": "Vega Spear", "shape": "circularImage", "size": 10, "title": "Your Primary deals 70% more damage, but gains a 7 second cooldown. When a % chance succeeds, its cooldown resets."}, {"group": "Youkai", "id": "Altair Dagger", "image": "sprites/Altair_Dagger_Icon.webp", "label": "Altair Dagger", "shape": "circularImage", "size": 10, "title": "Your Secondary deals 30% more damage, but its GCD becomes 4 seconds.\nWhen you use your Secondary, it has a 90% chance to have a GCD of 1 second instead."}, {"group": "Haunted", "id": "Ghost Spear", "image": "sprites/Ghost_Spear_Icon.webp", "label": "Ghost Spear", "shape": "circularImage", "size": 10, "title": "Your Primary now only deals 10 damage, and applies GHOSTFLAME."}, {"group": "Haunted", "id": "Phantom Dagger", "image": "sprites/Phantom_Dagger_Icon.webp", "label": "Phantom Dagger", "shape": "circularImage", "size": 10, "title": "Your Secondary now only deals 10 damage, and applies GHOSTFLAME."}, {"group": "Haunted", "id": "Cursed Candlestaff", "image": "sprites/Cursed_Candlestaff_Icon.webp", "label": "Cursed Candlestaff", "shape": "circularImage", "size": 10, "title": "Your Special now only deals 10 damage, and applies GHOSTFLAME."}, {"group": "Haunted", "id": "Smoke Shield", "image": "sprites/Smoke_Shield_Icon.webp", "label": "Smoke Shield", "shape": "circularImage", "size": 10, "title": "Every 24 seconds, your Defensive now grants GHOST.\nYour Secondary no longer breaks VANISH or GHOST.Starts battle on cooldown."}, {"group": "Haunted", "id": "Haunted Gloves", "image": "sprites/Haunted_Gloves_Icon.webp", "label": "Haunted Gloves", "shape": "circularImage", "size": 10, "title": "Abilities and loot that hit for 100 damage or less now hit for 100 damage, regardless of other loot effects."}, {"group": "Haunted", "id": "Old Bonnet", "image": "sprites/Old_Bonnet_Icon.webp", "label": "Old Bonnet", "shape": "circularImage", "size": 10, "title": "Abilities and loot that hit once now deal 250 damage, regardless of other loot effects."}, {"group": "Haunted", "id": "Maid Outfit", "image": "sprites/Maid_Outfit_Icon.webp", "label": "Maid Outfit", "shape": "circularImage", "size": 10, "title": "Afflicts surrounding enemies with GHOSTFLAME when you gain invulnerability."}, {"group": "Haunted", "id": "Calling Bell", "image": "sprites/Calling_Bell_Icon.webp", "label": "Calling Bell", "shape": "circularImage", "size": 10, "title": "Every 12 seconds, afflicts surrounding enemies with GHOSTFLAME."}, {"group": "Gladiator", "id": "Grandmaster Spear", "image": "sprites/Grandmaster_Spear_Icon.webp", "label": "Grandmaster Spear", "shape": "circularImage", "size": 10, "title": "Your Primary\u0027s damage increases by 40%.\nYour Special\u0027s cooldown increases by 4 seconds."}, {"group": "Gladiator", "id": "Teacher Knife", "image": "sprites/Teacher_Knife_Icon.webp", "label": "Teacher Knife", "shape": "circularImage", "size": 10, "title": "Your Secondary\u0027s damage increases by 40%.\nYour Primary gains a cooldown of 2 seconds."}, {"group": "Gladiator", "id": "Tactician Rod", "image": "sprites/Tactician_Rod_Icon.webp", "label": "Tactician Rod", "shape": "circularImage", "size": 10, "title": "Your Special\u0027s damage increases by 30%.\nYour Secondary gains a cooldown of 2 seconds."}, {"group": "Gladiator", "id": "Spiked Shield", "image": "sprites/Spiked_Shield_Icon.webp", "label": "Spiked Shield", "shape": "circularImage", "size": 10, "title": "When an ability or loot effect erases projectiles in a radius around you, deal X damage to that radius as well."}, {"group": "Gladiator", "id": "Battlemaiden Armor", "image": "sprites/Battlemaiden_Armor_Icon.webp", "label": "Battlemaiden Armor", "shape": "circularImage", "size": 10, "title": "Using your Defensive will reset loot and ability cooldowns with less than X seconds left on their timer."}, {"group": "Gladiator", "id": "Gladiator Helmet", "image": "sprites/Gladiator_Helmet_Icon.webp", "label": "Gladiator Helmet", "shape": "circularImage", "size": 10, "title": "Abilities and loot that have cooldowns deal 20% more damage."}, {"group": "Gladiator", "id": "Lancer Gauntlets", "image": "sprites/Lancer_Gauntlets_Icon.webp", "label": "Lancer Gauntlets", "shape": "circularImage", "size": 10, "title": "All damage is increased by 30%.\nYour Primary and Secondary gain cooldowns of 2 seconds."}, {"group": "Gladiator", "id": "Lion Charm", "image": "sprites/Lion_Charm_Icon.webp", "label": "Lion Charm", "shape": "circularImage", "size": 10, "title": "Deal 180 damage to nearby enemies when an ability or loot with a cooldown is activated."}, {"group": "Sparkblade", "id": "Bluebolt Staff", "image": "sprites/Bluebolt_Staff_Icon.webp", "label": "Bluebolt Staff", "shape": "circularImage", "size": 10, "title": "Your Primary applies SPARK."}, {"group": "Sparkblade", "id": "Lapis Sword", "image": "sprites/Lapis_Sword_Icon.webp", "label": "Lapis Sword", "shape": "circularImage", "size": 10, "title": "Your Secondary applies SPARK."}, {"group": "Sparkblade", "id": "Shockwave Tome", "image": "sprites/Shockwave_Tome_Icon.webp", "label": "Shockwave Tome", "shape": "circularImage", "size": 10, "title": "Your Special applies SPARK."}, {"group": "Sparkblade", "id": "Battery Shield", "image": "sprites/Battery_Shield_Icon.webp", "label": "Battery Shield", "shape": "circularImage", "size": 10, "title": "Every 30 times you or debuffs you apply deal damage to an enemy, your Defensive\u0027s cooldown resets."}, {"group": "Sparkblade", "id": "Raiju Crown", "image": "sprites/Raiju_Crown_Icon.webp", "label": "Raiju Crown", "shape": "circularImage", "size": 10, "title": "Every 20 times you or debuffs you apply deal damage to an enemy, apply SPARK to all enemies."}, {"group": "Sparkblade", "id": "Staticshock Earrings", "image": "sprites/Staticshock_Earrings_Icon.webp", "label": "Staticshock Earrings", "shape": "circularImage", "size": 10, "title": "Every 10 times you or debuffs you apply deal damage to an enemy, deal 150 damage to all enemies."}, {"group": "Sparkblade", "id": "Stormdance Gown", "image": "sprites/Stormdance_Gown_Icon.webp", "label": "Stormdance Gown", "shape": "circularImage", "size": 10, "title": "Every 40 times you or debuffs you apply deal damage to an enemy, gain invulnerability for 5 seconds."}, {"group": "Sparkblade", "id": "Blackbolt Ribbon", "image": "sprites/Blackbolt_Ribbon_Icon.webp", "label": "Blackbolt Ribbon", "shape": "circularImage", "size": 10, "title": "Every 50 times you or debuffs you apply deal damage to an enemy, deal 1200 damage to all enemies."}, {"group": "Swiftflight", "id": "Crane Katana", "image": "sprites/Crane_Katana_Icon.webp", "label": "Crane Katana", "shape": "circularImage", "size": 10, "title": "Gain FLOW-STR every time you move 15 rabbitleaps."}, {"group": "Swiftflight", "id": "Falconfeather Dagger", "image": "sprites/Falconfeather_Dagger_Icon.webp", "label": "Falconfeather Dagger", "shape": "circularImage", "size": 10, "title": "Gain FLOW-DEX every time you move 15 rabbitleaps."}, {"group": "Swiftflight", "id": "Tornado Staff", "image": "sprites/Tornado_Staff_Icon.webp", "label": "Tornado Staff", "shape": "circularImage", "size": 10, "title": "Gain FLOW-INT every time you move 15 rabbitleaps."}, {"group": "Swiftflight", "id": "Cloud Guard", "image": "sprites/Cloud_Guard_Icon.webp", "label": "Cloud Guard", "shape": "circularImage", "size": 10, "title": "Gain invulnerability for 5 seconds every time you move 25 rabbitleaps."}, {"group": "Swiftflight", "id": "Hermes Bow", "image": "sprites/Hermes_Bow_Icon.webp", "label": "Hermes Bow", "shape": "circularImage", "size": 10, "title": "Every 10 seconds, fires a projectile at your targeted enemy that deals 250 damage.\nCooldown resets every time you move 10 rabbitleaps."}, {"group": "Swiftflight", "id": "Talon Charm", "image": "sprites/Talon_Charm_Icon.webp", "label": "Talon Charm", "shape": "circularImage", "size": 10, "title": "Deals 150 damage to all enemies every time you move 5 rabbitleaps."}, {"group": "Swiftflight", "id": "Tiny Wings", "image": "sprites/Tiny_Wings_Icon.webp", "label": "Tiny Wings", "shape": "circularImage", "size": 10, "title": "Dramatically increases movement speed."}, {"group": "Swiftflight", "id": "Feathered Overcoat", "image": "sprites/Feathered_Overcoat_Icon.webp", "label": "Feathered Overcoat", "shape": "circularImage", "size": 10, "title": "Maxes out your movement speed while you\u0027re invulnerable."}, {"group": "Sacredflame", "id": "Sandpriestess Spear", "image": "sprites/Sandpriestess_Spear_Icon.webp", "label": "Sandpriestess Spear", "shape": "circularImage", "size": 10, "title": "Your Primary has a 40% chance to grant you FLASH-DEX."}, {"group": "Sacredflame", "id": "Flamedancer Dagger", "image": "sprites/Flamedancer_Dagger_Icon.webp", "label": "Flamedancer Dagger", "shape": "circularImage", "size": 10, "title": "Your Secondary has a 40% chance to grant you FLASH-STR."}, {"group": "Sacredflame", "id": "Whiteflame Staff", "image": "sprites/Whiteflame_Staff_Icon.webp", "label": "Whiteflame Staff", "shape": "circularImage", "size": 10, "title": "Every 2 times you use your Special, gain FLASH-STR."}, {"group": "Sacredflame", "id": "Sacred Shield", "image": "sprites/Sacred_Shield_Icon.webp", "label": "Sacred Shield", "shape": "circularImage", "size": 10, "title": "Every 2 times you use your Defensive, gain FLASH-INT."}, {"group": "Sacredflame", "id": "Marble Clasp", "image": "sprites/Marble_Clasp_Icon.webp", "label": "Marble Clasp", "shape": "circularImage", "size": 10, "title": "Every 5 times you use an ability, gain FLASH-DEX."}, {"group": "Sacredflame", "id": "Sun Pendant", "image": "sprites/Sun_Pendant_Icon.webp", "label": "Sun Pendant", "shape": "circularImage", "size": 10, "title": "Every 10 times you use an ability, reset your Special\u0027s cooldown and gain FLASH-INT."}, {"group": "Sacredflame", "id": "Tiny Hourglass", "image": "sprites/Tiny_Hourglass_Icon.webp", "label": "Tiny Hourglass", "shape": "circularImage", "size": 10, "title": "Every 12 seconds, deal 120 damage to all enemies.\nDamage increases by 120 each time it activates."}, {"group": "Sacredflame", "id": "Desert Earrings", "image": "sprites/Desert_Earrings_Icon.webp", "label": "Desert Earrings", "shape": "circularImage", "size": 10, "title": "Every time you gain a buff, gain another random buff for 5 seconds."}, {"group": "Ruins", "id": "Giant Stone Club", "image": "sprites/Giant_Stone_Club_Icon.webp", "label": "Giant Stone Club", "shape": "circularImage", "size": 10, "title": "Your Primary deals 70% more damage.\nIts GCD is increased by 0.60 seconds.Your movement speed is also moderately reduced."}, {"group": "Ruins", "id": "Ruins Sword", "image": "sprites/Ruins_Sword_Icon.webp", "label": "Ruins Sword", "shape": "circularImage", "size": 10, "title": "Your Secondary deals 100% more damage.\nIts GCD is increased by 0.80 seconds.Your movement speed is also slightly reduced."}, {"group": "Ruins", "id": "Mountain Staff", "image": "sprites/Mountain_Staff_Icon.webp", "label": "Mountain Staff", "shape": "circularImage", "size": 10, "title": "Your Special deals 200% more damage.\nIts GCD is increased by 2.50 seconds.Your movement speed is also moderately reduced."}, {"group": "Ruins", "id": "Boulder Shield", "image": "sprites/Boulder_Shield_Icon.webp", "label": "Boulder Shield", "shape": "circularImage", "size": 10, "title": "Every 30 seconds, using your Defensive will grant all allies STONESKIN.\nStarts battle off cooldown.Reduces your movement speed significantly."}, {"group": "Ruins", "id": "Golem\u0027s Claymore", "image": "sprites/Golem\u0027s_Claymore_Icon.webp", "label": "Golem\u0027s Claymore", "shape": "circularImage", "size": 10, "title": "Every 20 seconds, grants you STONESKIN for 5 seconds and then slices the air around you, dealing 500 damage to nearby enemies.\nAlso slows your movement speed slightly."}, {"group": "Ruins", "id": "Stoneplate Armor", "image": "sprites/Stoneplate_Armor_Icon.webp", "label": "Stoneplate Armor", "shape": "circularImage", "size": 10, "title": "Start each battle with STONESKIN for 30 seconds.\nModerately reduces movement speed."}, {"group": "Ruins", "id": "Sacredstone Charm", "image": "sprites/Sacredstone_Charm_Icon.webp", "label": "Sacredstone Charm", "shape": "circularImage", "size": 10, "title": "Abilities with a GCD equal to or higher than 1.50 seconds deal 50% more damage."}, {"group": "Ruins", "id": "Clay Rabbit", "image": "sprites/Clay_Rabbit_Icon.webp", "label": "Clay Rabbit", "shape": "circularImage", "size": 10, "title": "Every 12 seconds, standing still will grant you STONESKIN for 3 seconds."}, {"group": "Lakeshrine", "id": "Waterfall Polearm", "image": "sprites/Waterfall_Polearm_Icon.webp", "label": "Waterfall Polearm", "shape": "circularImage", "size": 10, "title": "Every 10 seconds, when you use your Primary, gain FLOW-STR for 5 seconds."}, {"group": "Lakeshrine", "id": "Vorpal Dao", "image": "sprites/Vorpal_Dao_Icon.webp", "label": "Vorpal Dao", "shape": "circularImage", "size": 10, "title": "Every 10 seconds, when you use your Secondary, gain FLOW-DEX for 5 seconds."}, {"group": "Lakeshrine", "id": "Jade Staff", "image": "sprites/Jade_Staff_Icon.webp", "label": "Jade Staff", "shape": "circularImage", "size": 10, "title": "Every 2 times you use your Special, gain STILLNESS for 10 seconds."}, {"group": "Lakeshrine", "id": "Reflection Shield", "image": "sprites/Reflection_Shield_Icon.webp", "label": "Reflection Shield", "shape": "circularImage", "size": 10, "title": "When you erase projectiles in a radius around you, gain COUNTER for 3 seconds."}, {"group": "Lakeshrine", "id": "Butterfly Hairpin", "image": "sprites/Butterfly_Hairpin_Icon.webp", "label": "Butterfly Hairpin", "shape": "circularImage", "size": 10, "title": "When you gain invincibility, gain a random buff for 5 seconds."}, {"group": "Lakeshrine", "id": "Watermage Pendant", "image": "sprites/Watermage_Pendant_Icon.webp", "label": "Watermage Pendant", "shape": "circularImage", "size": 10, "title": "Every 12 seconds, when you stand still, gain FLOW-INT for 5 seconds."}, {"group": "Lakeshrine", "id": "Raindrop Earrings", "image": "sprites/Raindrop_Earrings_Icon.webp", "label": "Raindrop Earrings", "shape": "circularImage", "size": 10, "title": "Every 18 seconds, when you stand still, gain REPEAT for 5 seconds."}, {"group": "Lakeshrine", "id": "Aquamarine Bracelet", "image": "sprites/Aquamarine_Bracelet_Icon.webp", "label": "Aquamarine Bracelet", "shape": "circularImage", "size": 10, "title": "Every 12 seconds, gain a random buff for 10 seconds."}]);
+                  edges = new vis.DataSet([]);
+
+                  nodeColors = {};
+                  allNodes = nodes.get({ returnType: "Object" });
+                  for (nodeId in allNodes) {
+                    nodeColors[nodeId] = allNodes[nodeId].color;
+                  }
+                  allEdges = edges.get({ returnType: "Object" });
+                  // adding nodes and edges to the graph
+                  data = {nodes: nodes, edges: edges};
+
+                  var options = {
+    "configure": {
+        "enabled": true
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": true,
+            "type": "dynamic"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+
+                  
+
+
+                  
+                  // if this network requires displaying the configure window,
+                  // put it in its div
+                  options.configure["container"] = document.getElementById("config");
+                  
+
+                  network = new vis.Network(container, data, options);
+
+                  
+
+                  
+
+                  
+
+
+                  
+                      network.on("stabilizationProgress", function(params) {
+                          document.getElementById('loadingBar').removeAttribute("style");
+                          var maxWidth = 496;
+                          var minWidth = 20;
+                          var widthFactor = params.iterations/params.total;
+                          var width = Math.max(minWidth,maxWidth * widthFactor);
+                          document.getElementById('bar').style.width = width + 'px';
+                          document.getElementById('text').innerHTML = Math.round(widthFactor*100) + '%';
+                      });
+                      network.once("stabilizationIterationsDone", function() {
+                          document.getElementById('text').innerHTML = '100%';
+                          document.getElementById('bar').style.width = '496px';
+                          document.getElementById('loadingBar').style.opacity = 0;
+                          // really clean the dom element
+                          setTimeout(function () {document.getElementById('loadingBar').style.display = 'none';}, 500);
+                      });
+                  
+
+                  return network;
+
+              }
+              drawGraph();
+        </script>
+    </body>
+</html>

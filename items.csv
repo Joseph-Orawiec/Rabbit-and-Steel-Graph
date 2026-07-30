@@ -1,0 +1,266 @@
+Item,Effect,Set,Path
+Raven Grimoire,Your Special applies CURSE.,Arcane,sprites/Raven_Grimoire_Icon.webp
+Blackwing Staff,Your Primary applies CURSE.,Arcane,sprites/Blackwing_Staff_Icon.webp
+Curse Talon,Your Secondary applies CURSE.,Arcane,sprites/Curse_Talon_Icon.webp
+Darkmagic Blade,"Every 10 seconds, slices the air around you dealing 300 damage and applying CURSE to nearby enemies.",Arcane,sprites/Darkmagic_Blade_Icon.webp
+Witch's Cloak,"Your Secondary deals 10% more damage.
+Debuffs you place deal 70% more damage.",Arcane,sprites/Witch's_Cloak_Icon.webp
+Crowfeather Hairpin,"Increases Special damage by 20%.
+When you place a debuff on an opponent, your Special has a 50% chance of resetting.",Arcane,sprites/Crowfeather_Hairpin_Icon.webp
+Redblack Ribbon,"You deal 5% more damage.
+When you place a debuff on an opponent, your Defensive has a 50% chance of resetting.",Arcane,sprites/Redblack_Ribbon_Icon.webp
+Opal Necklace,"When you use your Defensive, apply CURSE to all enemies.",Arcane,sprites/Opal_Necklace_Icon.webp
+Sleeping Greatbow,"Every 6 seconds, fires a slow-moving projectile at your targeted enemy that deals 200 damage.",Night,sprites/Sleeping_Greatbow_Icon.webp
+Crescentmoon Dagger,"Every 10 seconds, your Secondary will deal an additional 400 damage on hit.",Night,sprites/Crescentmoon_Dagger_Icon.webp
+Lullaby Harp,"Every 10 seconds, resets Defensive cooldowns for you and all allies.",Night,sprites/Lullaby_Harp_Icon.webp
+Nightstar Grimoire,"Every 25 seconds, deal 900 damage to all enemies.",Night,sprites/Nightstar_Grimoire_Icon.webp
+Moon Pendant,"Every 12 seconds, using your Special will deal 400 damage to enemies in a moderate radius around you.",Night,sprites/Moon_Pendant_Icon.webp
+Pajama Hat,Defensive and loot cooldowns are shortened by 2 seconds.,Night,sprites/Pajama_Hat_Icon.webp
+Stuffed Rabbit,"Increases Special damage by 20%.
+Every 12 seconds, using your Special will grant you invulnerability for 3 seconds.Starts battle on cooldown.",Night,sprites/Stuffed_Rabbit_Icon.webp
+Nightingale Gown,"Every 15 seconds, OMEGACHARGE your Special.",Night,sprites/Nightingale_Gown_Icon.webp
+Eternity Flute,"Every 12 seconds, grants HASTE to all allies for 5 seconds.",Timespace,sprites/Eternity_Flute_Icon.webp
+Timewarp Wand,Your Secondary has a 40% chance of giving you HASTE for 5 seconds.,Timespace,sprites/Timewarp_Wand_Icon.webp
+Chrome Shield,Using your Defensive will grant you HASTE for 8 seconds.,Timespace,sprites/Chrome_Shield_Icon.webp
+Clockwork Tome,Your Special has a 50% chance of giving you HASTE for 8 seconds.,Timespace,sprites/Clockwork_Tome_Icon.webp
+Metronome Boots,"Your GCDs become 1.10 seconds.
+Also moderately increases movement speed.",Timespace,sprites/Metronome_Boots_Icon.webp
+Timemage Cap,Cooldowns less than or equal to 10 seconds become 5 seconds.,Timespace,sprites/Timemage_Cap_Icon.webp
+Starry Cloak,Your Defensive's cooldown becomes 10 seconds.,Timespace,sprites/Starry_Cloak_Icon.webp
+Gemini Necklace,Your Special and Defensive have a 30% chance of instantly resetting when used.,Timespace,sprites/Gemini_Necklace_Icon.webp
+Hawkfeather Fan,Reduces your Special's cooldown by 2 seconds.,Wind,sprites/Hawkfeather_Fan_Icon.webp
+Windbite Dagger,"Your Secondary's GCD becomes 0.50 seconds, but its damage is reduced by 60%.",Wind,sprites/Windbite_Dagger_Icon.webp
+Pidgeon Bow,"Every 3 seconds, fires a projectile at your targeted enemy that deals 70 damage.",Wind,sprites/Pidgeon_Bow_Icon.webp
+Shinsoku Katana,Your Primary's GCD has a 50% chance to be 0.80 seconds instead of its normal amount.,Wind,sprites/Shinsoku_Katana_Icon.webp
+Eaglewing Charm,All your abilities deal 20 more damage.,Wind,sprites/Eaglewing_Charm_Icon.webp
+Sparrow Feather,Deals 50 damage to all enemies when your Primary or Secondary is used.,Wind,sprites/Sparrow_Feather_Icon.webp
+Winged Cap,"Grants a brief speed boost when your Secondary is used.
+Also increases base movement speed slightly.",Wind,sprites/Winged_Cap_Icon.webp
+Thief's Coat,"Every 10 seconds, VANISH for 3 seconds and gain a brief speed boost when you use your Special.
+Also increases base movement speed slightly.",Wind,sprites/Thief's_Coat_Icon.webp
+Vampiric Dagger,Your Secondary inflicts BLEED.,Bloodwolf,sprites/Vampiric_Dagger_Icon.webp
+Bloody Bandage,"When you use your Defensive, apply BLEED to all enemies.",Bloodwolf,sprites/Bloody_Bandage_Icon.webp
+Leech Staff,Your Primary inflicts BLEED.,Bloodwolf,sprites/Leech_Staff_Icon.webp
+Bloodhound Greatsword,"Every 10 seconds, slices the air around you dealing 300 damage and applying BLEED to nearby enemies.",Bloodwolf,sprites/Bloodhound_Greatsword_Icon.webp
+Reaper Cloak,Your Defensive additionally deals 100 damage 3 times to enemies facing away from you.,Bloodwolf,sprites/Reaper_Cloak_Icon.webp
+Bloodflower Brooch,All abilities deal 40 damage 2 times to enemies facing away from you.,Bloodwolf,sprites/Bloodflower_Brooch_Icon.webp
+Wolf Hood,"Every 6 seconds when you use your Primary, deal 250 damage to enemies facing away from you.",Bloodwolf,sprites/Wolf_Hood_Icon.webp
+Blood Vial,"At the start of each fight, inflict all enemies with SAP for 60 seconds.",Bloodwolf,sprites/Blood_Vial_Icon.webp
+Black Wakizashi,"Your Primary has a 30% chance of dealing an additional 3 blows, dealing 50 damage each, in a radius around your target enemy.",Assassin,sprites/Black_Wakizashi_Icon.webp
+Throwing Dagger,"Every 5 seconds, fires a projectile at your targeted enemy that deals 120 damage.
+Cooldown resets every time you use your Special.",Assassin,sprites/Throwing_Dagger_Icon.webp
+Assassin's Knife,"Your Secondary has a 30% chance of dealing an additional 2 blows, dealing 50 damage each, in a radius around your target enemy.",Assassin,sprites/Assassin's_Knife_Icon.webp
+Ninjutsu Scroll,"Your Special has a 30% chance of dealing an additional 3 blows, dealing 150 damage each, in a radius around your target enemy.",Assassin,sprites/Ninjutsu_Scroll_Icon.webp
+Shadow Bracelet,Abilities and loot that hit more than once deal 30 more damage.,Assassin,sprites/Shadow_Bracelet_Icon.webp
+Ninja Robe,"When a % chance succeeds, erase projectiles around you and VANISH for 3 seconds.",Assassin,sprites/Ninja_Robe_Icon.webp
+Kunoichi Hood,"Your abilities do 15 more damage.
+Your loot does 50 more damage.",Assassin,sprites/Kunoichi_Hood_Icon.webp
+Shinobi Tabi,"Standing still will cause you to VANISH for 5 seconds and resets your Special.
+Available every 8 seconds.Starts battle on cooldown.",Assassin,sprites/Shinobi_Tabi_Icon.webp
+Dragonhead Spear,"Your Primary is 40% more powerful, but gains a cooldown of 3 seconds.
+Also slightly reduces movement speed.",Rockdragon,sprites/Dragonhead_Spear_Icon.webp
+Granite Greatsword,"Every 16 seconds, slices a large radius around you dealing 700 damage.",Rockdragon,sprites/Granite_Greatsword_Icon.webp
+Greysteel Shield,"Your Defensive has a 30% larger radius.
+Invulnerability effects last 1 second longer.",Rockdragon,sprites/Greysteel_Shield_Icon.webp
+Stonebreaker Staff,"Your Special's cooldown is increased by 2 seconds, but deals 40% more damage.",Rockdragon,sprites/Stonebreaker_Staff_Icon.webp
+Tough Gauntlet,"Your abilities and loot all deal 30% more damage, but all GCDs are 0.20 seconds longer.",Rockdragon,sprites/Tough_Gauntlet_Icon.webp
+Rockdragon Mail,"Your movement speed is significantly reduced.
+Will shield you from damage every 45 seconds.Starts battle on 5 second cooldown.",Rockdragon,sprites/Rockdragon_Mail_Icon.webp
+Obsidian Hairpin,"Increases Special damage by 20%.
+Whenever you gain invulnerability, your Special has a 50% percent chance of resetting.",Rockdragon,sprites/Obsidian_Hairpin_Icon.webp
+Iron Greaves,"Every 12 seconds, standing still will grant brief invulnerability and reset your Defensive.
+Movement speed is slightly reduced.Starts battle on cooldown.",Rockdragon,sprites/Iron_Greaves_Icon.webp
+Volcano Spear,Your Primary inflicts BURN.,Flame,sprites/Volcano_Spear_Icon.webp
+Reddragon Blade,Your Secondary inflicts BURN.,Flame,sprites/Reddragon_Blade_Icon.webp
+Flame Bow,"Every 10 seconds, fires a projectile at your targeted enemy that deals 180 damage and applies BURN.",Flame,sprites/Flame_Bow_Icon.webp
+Meteor Staff,Your Special inflicts BURN.,Flame,sprites/Meteor_Staff_Icon.webp
+Phoenix Charm,"If you perish in battle, restore to full HP instead.
+Only works once.",Flame,sprites/Phoenix_Charm_Icon.webp
+Firescale Corset,"All of your cooldowns are reduced by 3 seconds.
+If you use your Defensive, this effect ends until the end of battle.",Flame,sprites/Firescale_Corset_Icon.webp
+Demon Horns,"All your abilities and loot deal 30% more damage.
+If you use your Defensive, this effect ends until the end of battle.",Flame,sprites/Demon_Horns_Icon.webp
+Flamewalker Boots,"All GCDs are shortened by 15% and your movement speed is increased significantly.
+If you use your Defensive, this effect ends until the end of battle.",Flame,sprites/Flamewalker_Boots_Icon.webp
+Diamond Shield,"Every 25 seconds, using your Defensive will grant you invulnerability for 5 seconds and erase projectiles in a large radius around you.
+Starts battle on 10 second cooldown.",Gem,sprites/Diamond_Shield_Icon.webp
+Peridot Rapier,"Increases Secondary damage by 20%.
+Every 8 seconds, using your Secondary will grant you brief invulnerability and erase projectiles in a large radius around you.",Gem,sprites/Peridot_Rapier_Icon.webp
+Garnet Staff,"Increases Special damage by 20%.
+Your Special will erase projectiles in a radius around you and grant brief invulnerability.",Gem,sprites/Garnet_Staff_Icon.webp
+Sapphire Violin,"Every 18 seconds, grants ELEGY to all allies for 8 seconds.
+Breaks if you take damage twice.Starts battle on cooldown.",Gem,sprites/Sapphire_Violin_Icon.webp
+Emerald Chestplate,"The counter on this item will decrease instead of you taking damage.
+The counter starts at 3 on pickup.",Gem,sprites/Emerald_Chestplate_Icon.webp
+Amethyst Bracelet,"Deal 30% more damage.
+Breaks if you take damage 3 times.",Gem,sprites/Amethyst_Bracelet_Icon.webp
+Topaz Charm,"Gain 8 extra Gold at the end of each fight.
+Breaks if you take damage 3 times.",Gem,sprites/Topaz_Charm_Icon.webp
+Ruby Circlet,"Your Special deals 80% more damage.
+Breaks if you take damage once.",Gem,sprites/Ruby_Circlet_Icon.webp
+Brightstorm Spear,Has a 30% chance of dealing 100 damage to all enemies when your Primary does damage.,Lightning,sprites/Brightstorm_Spear_Icon.webp
+Bolt Staff,Deals 150 damage to all enemies when you use your Special.,Lightning,sprites/Bolt_Staff_Icon.webp
+Lightning Bow,"Every 12 seconds, fires a projectile at your targeted enemy that deals 300 damage.
+Cooldown instantly resets when a % chance succeeds.",Lightning,sprites/Lightning_Bow_Icon.webp
+Darkstorm Knife,Has a 30% chance of dealing 100 damage to all enemies when your Secondary does damage.,Lightning,sprites/Darkstorm_Knife_Icon.webp
+Darkcloud Necklace,Damage from loot is increased 50%.,Lightning,sprites/Darkcloud_Necklace_Icon.webp
+Crown of Storms,"When a % chance succeeds, deal 200 damage to all enemies.",Lightning,sprites/Crown_of_Storms_Icon.webp
+Thunderclap Gloves,All abilities have a 20% chance of dealing 200 damage to all enemies when used.,Lightning,sprites/Thunderclap_Gloves_Icon.webp
+Storm Petticoat,Do 250 damage to all enemies when you gain invulnerability.,Lightning,sprites/Storm_Petticoat_Icon.webp
+Holy Greatsword,"Every 10 seconds, grants you SMITE and then slices the air around you, dealing 200 damage to nearby enemies.",Shrine,sprites/Holy_Greatsword_Icon.webp
+Sacred Bow,"Every 10 seconds, fires a projectile at your targeted enemy that deals 250 damage.
+Cooldown instantly resets when you gain a buff.",Shrine,sprites/Sacred_Bow_Icon.webp
+Purification Rod,"Every 18 seconds, using your Primary will give you ELEGY for 5 seconds.",Shrine,sprites/Purification_Rod_Icon.webp
+Ornamental Bell,"Every 15 seconds, grants SMITE to all allies for 10 seconds.",Shrine,sprites/Ornamental_Bell_Icon.webp
+Shrinemaiden's Kosode,"When you have a buff, your movement speed increases significantly and you deal 25% more damage.",Shrine,sprites/Shrinemaiden's_Kosode_Icon.webp
+Redwhite Ribbon,"You deal 5% more damage.
+Buffs you place last 50% longer.",Shrine,sprites/Redwhite_Ribbon_Icon.webp
+Divine Mirror,"Every 10 times you use an ability, deal 500 damage to all enemies.",Shrine,sprites/Divine_Mirror_Icon.webp
+Golden Chime,"Every 2 times you use your Defensive, gain ELEGY.",Shrine,sprites/Golden_Chime_Icon.webp
+Book of Cheats,"Your Special will have random, chaotic effects.",Lucky,sprites/Book_of_Cheats_Icon.webp
+Golden Katana,Your Primary and Secondary have a 5% chance to deal 100 damage 5 times to a large radius around your targeted enemy when used.,Lucky,sprites/Golden_Katana_Icon.webp
+Glittering Trumpet,"Every 20 seconds, grant RABBITLUCK to all allies.
+Cooldown cannot be reset by ability or loot effects.",Lucky,sprites/Glittering_Trumpet_Icon.webp
+Royal Staff,Your Special deals extra damage based on how much gold you have (1% for every 1 gold).,Lucky,sprites/Royal_Staff_Icon.webp
+Ballroom Gown,Makes you slightly luckier and slightly increases your movement speed.,Lucky,sprites/Ballroom_Gown_Icon.webp
+Silver Coin,"On pickup, gain 30 gold.",Lucky,sprites/Silver_Coin_Icon.webp
+Queen's Crown,"Critical hits now deal 175% extra damage, instead of their normal 75% extra damage.",Lucky,sprites/Queen's_Crown_Icon.webp
+Mimick Rabbitfoot,"Makes you significantly luckier.
+Not a real rabbit's foot.",Lucky,sprites/Mimick_Rabbitfoot_Icon.webp
+Butterfly Ocarina,"On pickup, heal all allies for 1.
+Heals all allies for 1 HP every 2 fights.",Life,sprites/Butterfly_Ocarina_Icon.webp
+Fairy Spear,"Your Primary has a 30% larger radius and deals 30% more damage, but stops movement when used.",Life,sprites/Fairy_Spear_Icon.webp
+Moss Shield,"Every 12 seconds, using your Defensive will reset its cooldown instantly.",Life,sprites/Moss_Shield_Icon.webp
+Floral Bow,"Every 6 seconds, fires a projectile at your targeted enemy that deals 250 damage.
+Only activates while standing still.",Life,sprites/Floral_Bow_Icon.webp
+Blue Rose,"Your max HP is increased by 1.
+Has a 50% chance of healing you for 1 at the end of each fight.",Life,sprites/Blue_Rose_Icon.webp
+Sunflower Crown,"Your max HP is increased by 1.
+You become able to graze slightly into a projectile without taking damage.",Life,sprites/Sunflower_Crown_Icon.webp
+Midsummer Dress,"Your max HP is increased by 1.
+Ability or loot effects that temporarily slow your movement no longer affect you.",Life,sprites/Midsummer_Dress_Icon.webp
+Grasswoven Bracelet,"Your max HP is increased by 1.
+All abilities and loot's hitboxes are 30% larger.",Life,sprites/Grasswoven_Bracelet_Icon.webp
+Snakefang Dagger,Your Secondary applies POISON for 5 seconds.,Poison,sprites/Snakefang_Dagger_Icon.webp
+Ivy Staff,Your Primary applies POISON for 5 seconds.,Poison,sprites/Ivy_Staff_Icon.webp
+Deathcap Tome,Your Special applies POISON for 5 seconds.,Poison,sprites/Deathcap_Tome_Icon.webp
+Spiderbite Bow,"Every 10 seconds, fires a projectile at your targeted enemy that deals 50 damage and applies POISON for 5 seconds.",Poison,sprites/Spiderbite_Bow_Icon.webp
+Compound Gloves,"When you deal damage, has a 10% chance to apply DECAY.",Poison,sprites/Compound_Gloves_Icon.webp
+Poisonfrog Charm,"When a % chance succeeds, apply POISON to all enemies for 5 seconds.",Poison,sprites/Poisonfrog_Charm_Icon.webp
+Venom Hood,"Your abilities do 15 more damage.
+Debuffs you place deal 50 more damage.",Poison,sprites/Venom_Hood_Icon.webp
+Chemist's Coat,"Your Defensive applies POISON to nearby enemies for 8 seconds.
+Slightly increases movement speed.",Poison,sprites/Chemist's_Coat_Icon.webp
+Seashell Shield,Your Defensive has a random cooldown between 1 second and 15 seconds every time you use it.,Depth,sprites/Seashell_Shield_Icon.webp
+Necronomicon,"Every 8 seconds, using your Special will reset its cooldown instantly and CHARGE it.",Depth,sprites/Necronomicon_Icon.webp
+Tidal Greatsword,"Every 12 seconds, slices a large radius around you dealing 200 damage.
+Slowly gets larger and deals more damage as a fight drags on.",Depth,sprites/Tidal_Greatsword_Icon.webp
+Occult Dagger,"Your Secondary is 80% more powerful, but gains a cooldown of 5 seconds.",Depth,sprites/Occult_Dagger_Icon.webp
+Mermaid Scalemail,"All cooldowns are reduced by 2 seconds.
+All loot and abilities with cooldowns start battles on a 8 second cooldown.",Depth,sprites/Mermaid_Scalemail_Icon.webp
+Hydrous Blob,"Every 8 seconds, using your Secondary will fire an eldritch beast towards your target, dealing 250 damage.
+Starts battles on cooldown.",Depth,sprites/Hydrous_Blob_Icon.webp
+Abyss Artifact,"Every 30 seconds, using your Defensive will grant you SUPER for 8 seconds.
+Starts on a 15 second cooldown.",Depth,sprites/Abyss_Artifact_Icon.webp
+Lost Pendant,"At the start of each fight, inflict all enemies with DECAY for 60 seconds.",Depth,sprites/Lost_Pendant_Icon.webp
+Sawtooth Cleaver,"Increases your Primary's damage by 30%, but decreases its radius by 20%.",Darkbite,sprites/Sawtooth_Cleaver_Icon.webp
+Raven's Dagger,"Increases your Secondary's damage by 50%, but decreases its radius by 40%.",Darkbite,sprites/Raven's_Dagger_Icon.webp
+Killing Note,"Increases your Special's damage by 30%, but decreases its radius by 20%.",Darkbite,sprites/Killing_Note_Icon.webp
+Blacksteel Buckler,"Your Defensive's range decreases by 30%, but now has a 2 seconds shorter cooldown and grants COUNTER.",Darkbite,sprites/Blacksteel_Buckler_Icon.webp
+Nightguard Gloves,Whichever ability has the highest base damage value deals 20% more damage.,Darkbite,sprites/Nightguard_Gloves_Icon.webp
+Sniper's Eyeglasses,You deal 30% more damage when you are separated from your target by at least 3 rabbitleaps.,Darkbite,sprites/Sniper's_Eyeglasses_Icon.webp
+Darkmage Charm,"When you've been standing still for 1 second, your Special deals 40% more damage.",Darkbite,sprites/Darkmage_Charm_Icon.webp
+Firststrike Bracelet,"Every 15 seconds, gain BLACKSTRIKE when you use your Secondary.
+Starts the battle off cooldown.",Darkbite,sprites/Firststrike_Bracelet_Icon.webp
+Obsidian Rod,"Your Special's strength becomes the total cooldown time of all your abilities and loot, in seconds, multiplied by 10, divided by the times it hits your target (Maximum of 800 total).",Timegem,sprites/Obsidian_Rod_Icon.webp
+Darkglass Spear,"Your Primary's strength becomes your Special's cooldown, multiplied by 30, minus your Secondary's strength, divided by the times your Primary hits your target (Maximum of 500 total).",Timegem,sprites/Darkglass_Spear_Icon.webp
+Timespace Dagger,"Your Secondary's strength becomes your Special and Defensive's cooldown added together, multiplied by 10, divided by the times your Secondary hits your target. (Maximum of 500 total).",Timegem,sprites/Timespace_Dagger_Icon.webp
+Quartz Shield,"Your Defensive's cooldown becomes 30 seconds.
+When a loot item with a cooldown activates, the remaining timer on your Defensive is reduced by that amount.",Timegem,sprites/Quartz_Shield_Icon.webp
+Pocketwatch,Abilities with a GCD less than or equal to 1.10 seconds deal 30% more damage.,Timegem,sprites/Pocketwatch_Icon.webp
+Nova Crown,"Your Special's cooldown becomes 30 seconds.
+Every 8 seconds, this loot item reduces your Special's cooldown timer to 1 second and CHARGES it.",Timegem,sprites/Nova_Crown_Icon.webp
+Blackhole Charm,"Deal 200 damage to all enemies when you use an ability or loot item with a cooldown of 10 seconds or more.
+Hits one extra time for every 10 seconds longer the cooldown is than that, up to 5 times.",Timegem,sprites/Blackhole_Charm_Icon.webp
+Twinstar Earrings,"Your Primary and Secondary now have a 2 second GCD, and deal 70% more damage.",Timegem,sprites/Twinstar_Earrings_Icon.webp
+Kyou No Omikuji,"All damage you deal increases by 50%.
+% chance triggers no longer happen, and you no longer hit for critical damage.",Youkai,sprites/Kyou_No_Omikuji_Icon.webp
+Youkai Bracelet,"All damage you deal increases by 40%.
+Your attacks will no longer have randomized damage, or hit for critical damage.",Youkai,sprites/Youkai_Bracelet_Icon.webp
+Oni Staff,"Your Special deals 30% more damage.
+When a % chance succeeds, your Special goes on a 8 second cooldown.",Youkai,sprites/Oni_Staff_Icon.webp
+Kappa Shield,"Your Defensive has a 3 seconds shorter cooldown, but can no longer be reset by ability or loot effects.",Youkai,sprites/Kappa_Shield_Icon.webp
+Usagi Kamen,"When a % chance succeeds, gain a random buff for 5 seconds.",Youkai,sprites/Usagi_Kamen_Icon.webp
+Red Tanzaku,Miracles occasionally happen.,Youkai,sprites/Red_Tanzaku_Icon.webp
+Vega Spear,"Your Primary deals 70% more damage, but gains a 7 second cooldown. When a % chance succeeds, its cooldown resets.",Youkai,sprites/Vega_Spear_Icon.webp
+Altair Dagger,"Your Secondary deals 30% more damage, but its GCD becomes 4 seconds.
+When you use your Secondary, it has a 90% chance to have a GCD of 1 second instead.",Youkai,sprites/Altair_Dagger_Icon.webp
+Ghost Spear,"Your Primary now only deals 10 damage, and applies GHOSTFLAME.",Haunted,sprites/Ghost_Spear_Icon.webp
+Phantom Dagger,"Your Secondary now only deals 10 damage, and applies GHOSTFLAME.",Haunted,sprites/Phantom_Dagger_Icon.webp
+Cursed Candlestaff,"Your Special now only deals 10 damage, and applies GHOSTFLAME.",Haunted,sprites/Cursed_Candlestaff_Icon.webp
+Smoke Shield,"Every 24 seconds, your Defensive now grants GHOST.
+Your Secondary no longer breaks VANISH or GHOST.Starts battle on cooldown.",Haunted,sprites/Smoke_Shield_Icon.webp
+Haunted Gloves,"Abilities and loot that hit for 100 damage or less now hit for 100 damage, regardless of other loot effects.",Haunted,sprites/Haunted_Gloves_Icon.webp
+Old Bonnet,"Abilities and loot that hit once now deal 250 damage, regardless of other loot effects.",Haunted,sprites/Old_Bonnet_Icon.webp
+Maid Outfit,Afflicts surrounding enemies with GHOSTFLAME when you gain invulnerability.,Haunted,sprites/Maid_Outfit_Icon.webp
+Calling Bell,"Every 12 seconds, afflicts surrounding enemies with GHOSTFLAME.",Haunted,sprites/Calling_Bell_Icon.webp
+Grandmaster Spear,"Your Primary's damage increases by 40%.
+Your Special's cooldown increases by 4 seconds.",Gladiator,sprites/Grandmaster_Spear_Icon.webp
+Teacher Knife,"Your Secondary's damage increases by 40%.
+Your Primary gains a cooldown of 2 seconds.",Gladiator,sprites/Teacher_Knife_Icon.webp
+Tactician Rod,"Your Special's damage increases by 30%.
+Your Secondary gains a cooldown of 2 seconds.",Gladiator,sprites/Tactician_Rod_Icon.webp
+Spiked Shield,"When an ability or loot effect erases projectiles in a radius around you, deal 300 damage to that radius as well.",Gladiator,sprites/Spiked_Shield_Icon.webp
+Battlemaiden Armor,Using your Defensive will reset loot and ability cooldowns with less than 8 seconds left on their timer.,Gladiator,sprites/Battlemaiden_Armor_Icon.webp
+Gladiator Helmet,Abilities and loot that have cooldowns deal 20% more damage.,Gladiator,sprites/Gladiator_Helmet_Icon.webp
+Lancer Gauntlets,"All damage is increased by 30%.
+Your Primary and Secondary gain cooldowns of 2 seconds.",Gladiator,sprites/Lancer_Gauntlets_Icon.webp
+Lion Charm,Deal 180 damage to nearby enemies when an ability or loot with a cooldown is activated.,Gladiator,sprites/Lion_Charm_Icon.webp
+Bluebolt Staff,Your Primary applies SPARK.,Sparkblade,sprites/Bluebolt_Staff_Icon.webp
+Lapis Sword,Your Secondary applies SPARK.,Sparkblade,sprites/Lapis_Sword_Icon.webp
+Shockwave Tome,Your Special applies SPARK.,Sparkblade,sprites/Shockwave_Tome_Icon.webp
+Battery Shield,"Every 30 times you or debuffs you apply deal damage to an enemy, your Defensive's cooldown resets.",Sparkblade,sprites/Battery_Shield_Icon.webp
+Raiju Crown,"Every 20 times you or debuffs you apply deal damage to an enemy, apply SPARK to all enemies.",Sparkblade,sprites/Raiju_Crown_Icon.webp
+Staticshock Earrings,"Every 10 times you or debuffs you apply deal damage to an enemy, deal 150 damage to all enemies.",Sparkblade,sprites/Staticshock_Earrings_Icon.webp
+Stormdance Gown,"Every 40 times you or debuffs you apply deal damage to an enemy, gain invulnerability for 5 seconds.",Sparkblade,sprites/Stormdance_Gown_Icon.webp
+Blackbolt Ribbon,"Every 50 times you or debuffs you apply deal damage to an enemy, deal 1200 damage to all enemies.",Sparkblade,sprites/Blackbolt_Ribbon_Icon.webp
+Crane Katana,Gain FLOW-STR every time you move 15 rabbitleaps.,Swiftflight,sprites/Crane_Katana_Icon.webp
+Falconfeather Dagger,Gain FLOW-DEX every time you move 15 rabbitleaps.,Swiftflight,sprites/Falconfeather_Dagger_Icon.webp
+Tornado Staff,Gain FLOW-INT every time you move 15 rabbitleaps.,Swiftflight,sprites/Tornado_Staff_Icon.webp
+Cloud Guard,Gain invulnerability for 5 seconds every time you move 25 rabbitleaps.,Swiftflight,sprites/Cloud_Guard_Icon.webp
+Hermes Bow,"Every 10 seconds, fires a projectile at your targeted enemy that deals 250 damage.
+Cooldown resets every time you move 10 rabbitleaps.",Swiftflight,sprites/Hermes_Bow_Icon.webp
+Talon Charm,Deals 150 damage to all enemies every time you move 5 rabbitleaps.,Swiftflight,sprites/Talon_Charm_Icon.webp
+Tiny Wings,Dramatically increases movement speed.,Swiftflight,sprites/Tiny_Wings_Icon.webp
+Feathered Overcoat,Maxes out your movement speed while you're invulnerable.,Swiftflight,sprites/Feathered_Overcoat_Icon.webp
+Sandpriestess Spear,Your Primary has a 40% chance to grant you FLASH-DEX.,Sacredflame,sprites/Sandpriestess_Spear_Icon.webp
+Flamedancer Dagger,Your Secondary has a 40% chance to grant you FLASH-STR.,Sacredflame,sprites/Flamedancer_Dagger_Icon.webp
+Whiteflame Staff,"Every 2 times you use your Special, gain FLASH-STR.",Sacredflame,sprites/Whiteflame_Staff_Icon.webp
+Sacred Shield,"Every 2 times you use your Defensive, gain FLASH-INT.",Sacredflame,sprites/Sacred_Shield_Icon.webp
+Marble Clasp,"Every 5 times you use an ability, gain FLASH-DEX.",Sacredflame,sprites/Marble_Clasp_Icon.webp
+Sun Pendant,"Every 10 times you use an ability, reset your Special's cooldown and gain FLASH-INT.",Sacredflame,sprites/Sun_Pendant_Icon.webp
+Tiny Hourglass,"Every 12 seconds, deal 120 damage to all enemies.
+Damage increases by 120 each time it activates.",Sacredflame,sprites/Tiny_Hourglass_Icon.webp
+Desert Earrings,"Every time you gain a buff, gain another random buff for 5 seconds.",Sacredflame,sprites/Desert_Earrings_Icon.webp
+Giant Stone Club,"Your Primary deals 70% more damage.
+Its GCD is increased by 0.60 seconds.Your movement speed is also moderately reduced.",Ruins,sprites/Giant_Stone_Club_Icon.webp
+Ruins Sword,"Your Secondary deals 100% more damage.
+Its GCD is increased by 0.80 seconds.Your movement speed is also slightly reduced.",Ruins,sprites/Ruins_Sword_Icon.webp
+Mountain Staff,"Your Special deals 200% more damage.
+Its GCD is increased by 2.50 seconds.Your movement speed is also moderately reduced.",Ruins,sprites/Mountain_Staff_Icon.webp
+Boulder Shield,"Every 30 seconds, using your Defensive will grant all allies STONESKIN.
+Starts battle off cooldown.Reduces your movement speed significantly.",Ruins,sprites/Boulder_Shield_Icon.webp
+Golem's Claymore,"Every 20 seconds, grants you STONESKIN for 5 seconds and then slices the air around you, dealing 500 damage to nearby enemies.
+Also slows your movement speed slightly.",Ruins,sprites/Golem's_Claymore_Icon.webp
+Stoneplate Armor,"Start each battle with STONESKIN for 30 seconds.
+Moderately reduces movement speed.",Ruins,sprites/Stoneplate_Armor_Icon.webp
+Sacredstone Charm,Abilities with a GCD equal to or higher than 1.50 seconds deal 50% more damage.,Ruins,sprites/Sacredstone_Charm_Icon.webp
+Clay Rabbit,"Every 12 seconds, standing still will grant you STONESKIN for 3 seconds.",Ruins,sprites/Clay_Rabbit_Icon.webp
+Waterfall Polearm,"Every 10 seconds, when you use your Primary, gain FLOW-STR for 5 seconds.",Lakeshrine,sprites/Waterfall_Polearm_Icon.webp
+Vorpal Dao,"Every 10 seconds, when you use your Secondary, gain FLOW-DEX for 5 seconds.",Lakeshrine,sprites/Vorpal_Dao_Icon.webp
+Jade Staff,"Every 2 times you use your Special, gain STILLNESS for 10 seconds.",Lakeshrine,sprites/Jade_Staff_Icon.webp
+Reflection Shield,"When you erase projectiles in a radius around you, gain COUNTER for 3 seconds.",Lakeshrine,sprites/Reflection_Shield_Icon.webp
+Butterfly Hairpin,"When you gain invincibility, gain a random buff for 5 seconds.",Lakeshrine,sprites/Butterfly_Hairpin_Icon.webp
+Watermage Pendant,"Every 12 seconds, when you stand still, gain FLOW-INT for 5 seconds.",Lakeshrine,sprites/Watermage_Pendant_Icon.webp
+Raindrop Earrings,"Every 18 seconds, when you stand still, gain REPEAT for 5 seconds.",Lakeshrine,sprites/Raindrop_Earrings_Icon.webp
+Aquamarine Bracelet,"Every 12 seconds, gain a random buff for 10 seconds.",Lakeshrine,sprites/Aquamarine_Bracelet_Icon.webp
