@@ -18,4 +18,5 @@ Manually evaluated each item pair and decided if they synergized, therefore crea
 
 Used pyvis to visualize the graph
 
-##
+## Viewing
+Download the 
